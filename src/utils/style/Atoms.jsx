@@ -4,7 +4,7 @@ import colors from './colors'
 
 export const StyledLink = styled(Link)`
   padding: 10px 15px;
-  color: ${colors.secondary};
+  color: ${colors.primary};
   text-decoration: none;
   font-size: 18px;
   text-align: center;

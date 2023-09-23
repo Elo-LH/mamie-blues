@@ -5,11 +5,13 @@ import Home from './pages/Home/'
 import Recipe from './pages/Recipe'
 import Header from './components/Header'
 import Footer from './components/Footer'
+import GlobalStyle from './utils/style/GlobalStyle'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Router>
+      <GlobalStyle />
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
