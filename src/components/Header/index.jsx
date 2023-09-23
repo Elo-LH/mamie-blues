@@ -1,23 +1,25 @@
-import { Link } from 'react-router-dom'
+import { StyledLink } from '../../utils/style/Atoms'
 import styled from 'styled-components'
+import colors from '../../utils/style/colors'
 
 const NavContainer = styled.nav`
   padding: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: ${colors.backgroundLight};
 `
 
 const SiteName = styled.h2`
-  color: blue;
+  color: ${colors.primary};
 `
 
 function Header() {
   return (
     <NavContainer>
       <SiteName>Mamie Blues</SiteName>
-      <Link to="/">Home</Link>
-      <Link to="/recipe">Recipe</Link>
+      <StyledLink to="/">Home</StyledLink>
+      <StyledLink to="/recipe">Recipe</StyledLink>
     </NavContainer>
   )
 }
