@@ -15,7 +15,6 @@ function Step() {
   const time = recipes.reduce((acc, recipe) =>
     recipe.id === '0000001' ? acc.concat(recipe.timing) : acc
   )
-  console.log(time)
 
   return (
     <TimeWrapper>

@@ -32,7 +32,6 @@ function Ingredients() {
       recipe.id === '0000001' ? acc.concat(recipe.ingredients) : acc,
     []
   )
-  console.log(ingredients)
 
   return (
     <IngredientsWrapper>
