@@ -1,6 +1,10 @@
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import Step from '../../components/Step'
+import Time from '../../components/Time'
+import Ingredients from '../../components/Ingredients'
+
+import { recipes } from '../../assets/recipes'
 
 const Title = styled.h1`
   color: ${colors.secondary};
@@ -37,28 +41,27 @@ const Author = styled.p`
   text-align: justify;
 `
 
-const StepsWrapper = styled.div`
-  background-color: ${colors.backgroundLight};
-  padding: 20px;
-`
-
-function Home() {
+function Recipe() {
+  const recipe = recipes.reduce((acc, recipe) =>
+    recipe.id === '0000001' ? acc.concat(recipe) : null
+  )
   return (
     <RecipeWrapper>
-      <Title>Crêpes</Title>
-      <Subtitle>Pan cooked & delicious without sugar !</Subtitle>
-      <Author> Brought to you by Granny Simone</Author>
+      <Title key={recipe.id}>{recipe.name}</Title>
+      <Subtitle>{recipe.description}</Subtitle>
+      <Author>
+        {' '}
+        Brought to you by Granny : {recipe.author.name} from{' '}
+        {recipe.author.country}
+      </Author>
 
       <OverviewWrapper>
         <Subtitle>What do you need ?</Subtitle>
-        <OverviewText> Difficulty : EZ, Cost : Cheap</OverviewText>
-        <TimeWrapper>
-          <OverviewText>Total time : 1h40</OverviewText>
-          <OverviewText>Prep time : 10min</OverviewText>
-          <OverviewText>cooking time : 30min</OverviewText>
-          <OverviewText>resting time : 1h</OverviewText>
-        </TimeWrapper>
-        <OverviewText> Ingredients : 500g flour, 1l milk, 5 eggs</OverviewText>
+        <OverviewText>
+          Difficulty : {recipe.difficulty}, Cost : {recipe.cost}
+        </OverviewText>
+        <Time />
+        <Ingredients />
       </OverviewWrapper>
 
       <Step />
@@ -66,4 +69,4 @@ function Home() {
   )
 }
 
-export default Home
+export default Recipe

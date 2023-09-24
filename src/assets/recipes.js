@@ -1,15 +1,15 @@
-{
-    "recipe": {
+export const recipes = [
+    {
         "id": "0000001",
-        "name": "french crêpes",
+        "name": "French Crêpes",
         "description": "Pan cooked & delicious without sugar !",
         "author": {
-                "name": "simone",
-                "country": "france"
+                "name": "Simone",
+                "country": "France"
             },
-        "difficulty": "easy",
-        "cost": "cheap",
-        "time": {
+        "difficulty": "Easy",
+        "cost": "Cheap",
+        "timing": {
             "preparation" : 10,
             "cooking": 30,
             "resting": 60,
@@ -17,17 +17,17 @@
         },
         "ingredients" : [
             {
-                "name" : "flour",
+                "name" : "Flour",
                 "quantity" : 500,
                 "metric" : "gram"
             },
             {
-                "name" : "milk",
+                "name" : "Milk",
                 "quantity" : 1,
                 "metric" : "liter"
             }, 
             {
-                "name" : "eggs",
+                "name" : "Eggs",
                 "quantity" : 5,
                 "metric" : null
             }
@@ -38,12 +38,12 @@
                 "name" : "Add eggs to flour",
                 "ingredients" : [
                     {
-                        "name" : "flour",
+                        "name" : "Flour",
                         "quantity" : 500,
                         "metric" : "gram"
                     },
                     {
-                        "name" : "eggs",
+                        "name" : "Eggs",
                         "quantity" : 5,
                         "metric" : null
                     }
@@ -57,7 +57,7 @@
                 "name" : "Add milk to mix",
                 "ingredients" : [
                     {
-                        "name" : "milk",
+                        "name" : "Milk",
                         "quantity" : 1,
                         "metric" : "liter"
                     }
@@ -86,4 +86,4 @@
             }
         ]
     }
-}
+]
