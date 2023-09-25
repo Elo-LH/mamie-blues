@@ -34,11 +34,11 @@ class Ingredients extends Component {
 
   render() {
     const { ingredients } = this.props
-    console.log(' je suis dans le component ingredients')
 
     return (
       <IngredientsWrapper>
         <IngredientsTitle>Ingredients : </IngredientsTitle>
+        {/* For every ingredient, shows name, quantity and metric if there is */}
         <IngredientsList>
           {ingredients.map((ingredient) => (
             <IngredientText key={ingredient.name}>

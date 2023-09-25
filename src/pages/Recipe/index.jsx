@@ -3,8 +3,6 @@ import colors from '../../utils/style/colors'
 import Step from '../../components/Step'
 import Time from '../../components/Time'
 import Ingredients from '../../components/Ingredients'
-import { useParams } from 'react-router-dom'
-import { useState } from 'react'
 
 import { recipes } from '../../assets/recipes'
 
@@ -43,15 +41,6 @@ function Recipe() {
   )
 
   const ingredients = recipe.ingredients
-  console.log(`j'ai update le props ingredients`)
-
-  // updateIngredients(
-  //   recipes.reduce(
-  //     (acc, recipe) =>
-  //       recipe.id === '0000001' ? acc.concat(recipe.ingredients) : acc,
-  //     []
-  //   )
-  // )
 
   const steps = recipes.reduce(
     (acc, recipe) => (recipe.id === '0000001' ? acc.concat(recipe.steps) : acc),
@@ -63,8 +52,7 @@ function Recipe() {
       <Title key={recipe.id}>{recipe.name}</Title>
       <Subtitle>{recipe.description}</Subtitle>
       <Author>
-        {' '}
-        Brought to you by Granny : {recipe.author.name} from{' '}
+        Brought to you by Granny : {recipe.author.name} from
         {recipe.author.country}
       </Author>
 
@@ -73,10 +61,12 @@ function Recipe() {
         <OverviewText>
           Difficulty : {recipe.difficulty}, Cost : {recipe.cost}
         </OverviewText>
+        {/* Shows detailed timing */}
         <Time />
         <Ingredients ingredients={ingredients} />
       </OverviewWrapper>
 
+      {/* Display each step */}
       {steps.map((step) => (
         <Step step={step} />
       ))}

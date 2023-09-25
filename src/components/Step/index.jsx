@@ -1,16 +1,9 @@
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
-import { recipes } from '../../assets/recipes'
 import Ingredients from '../Ingredients'
 import { Component } from 'react'
 
 const StepWrapper = styled.div`
-  background-color: ${colors.backgroundLight};
-  padding-bottom: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
-`
-const StepsWrapper = styled.div`
   background-color: ${colors.backgroundLight};
   padding-bottom: 50px;
   padding-left: 20px;
@@ -33,7 +26,6 @@ class Step extends Component {
 
   render() {
     const { step } = this.props
-    // updateIngredients(step.ingredients)
 
     return (
       <StepWrapper>
@@ -41,6 +33,7 @@ class Step extends Component {
           {step.number} - {step.name}{' '}
         </StepTitle>
         {step.ingredients.length > 0 ? (
+          // Create list of ingredients for this specific step, only if there is some
           <Ingredients ingredients={step.ingredients} />
         ) : null}
         <StepText key={step.description}>{step.description}</StepText>
