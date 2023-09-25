@@ -3,6 +3,8 @@ import colors from '../../utils/style/colors'
 import Step from '../../components/Step'
 import Time from '../../components/Time'
 import Ingredients from '../../components/Ingredients'
+import { useParams } from 'react-router-dom'
+import { useState } from 'react'
 
 import { recipes } from '../../assets/recipes'
 
@@ -30,12 +32,6 @@ const OverviewText = styled.p`
   color: ${colors.secondary};
 `
 
-const TimeWrapper = styled.div`
-  background-color: ${colors.backgroundDark};
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`
 const Author = styled.p`
   color: ${colors.dark};
   text-align: justify;
@@ -45,6 +41,23 @@ function Recipe() {
   const recipe = recipes.reduce((acc, recipe) =>
     recipe.id === '0000001' ? acc.concat(recipe) : null
   )
+
+  const ingredients = recipe.ingredients
+  console.log(`j'ai update le props ingredients`)
+
+  // updateIngredients(
+  //   recipes.reduce(
+  //     (acc, recipe) =>
+  //       recipe.id === '0000001' ? acc.concat(recipe.ingredients) : acc,
+  //     []
+  //   )
+  // )
+
+  const steps = recipes.reduce(
+    (acc, recipe) => (recipe.id === '0000001' ? acc.concat(recipe.steps) : acc),
+    []
+  )
+
   return (
     <RecipeWrapper>
       <Title key={recipe.id}>{recipe.name}</Title>
@@ -61,10 +74,12 @@ function Recipe() {
           Difficulty : {recipe.difficulty}, Cost : {recipe.cost}
         </OverviewText>
         <Time />
-        <Ingredients />
+        <Ingredients ingredients={ingredients} />
       </OverviewWrapper>
 
-      <Step />
+      {steps.map((step) => (
+        <Step step={step} />
+      ))}
     </RecipeWrapper>
   )
 }
