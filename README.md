@@ -7,15 +7,15 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### How does it look now ?
 
-Home page & Recipe page
-Basic Header & Footer
+- Home page & Recipe page
+- Basic Header & Footer
 
 ### How will it be looking later ?
 
-Home page with search bar
-Search result page
-News page with latest recipes added
-Recipe display page with all infos and steps
+- Home page with search bar
+- Search result page
+- News page with latest recipes added
+- Recipe display page with all infos and steps
 
 ## Currently working on : 🚧
 
@@ -40,6 +40,6 @@ Recipe display page with all infos and steps
 
 ### In reflexion
 
-- add individual connexion
-- granny profiles
-- possibilty to submit a new recipe
+- Add individual connexion
+- Granny profiles
+- Possibilty to submit a new recipe
