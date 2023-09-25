@@ -30,12 +30,6 @@ const OverviewText = styled.p`
   color: ${colors.secondary};
 `
 
-const TimeWrapper = styled.div`
-  background-color: ${colors.backgroundDark};
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`
 const Author = styled.p`
   color: ${colors.dark};
   text-align: justify;
@@ -45,13 +39,20 @@ function Recipe() {
   const recipe = recipes.reduce((acc, recipe) =>
     recipe.id === '0000001' ? acc.concat(recipe) : null
   )
+
+  const ingredients = recipe.ingredients
+
+  const steps = recipes.reduce(
+    (acc, recipe) => (recipe.id === '0000001' ? acc.concat(recipe.steps) : acc),
+    []
+  )
+
   return (
     <RecipeWrapper>
       <Title key={recipe.id}>{recipe.name}</Title>
       <Subtitle>{recipe.description}</Subtitle>
       <Author>
-        {' '}
-        Brought to you by Granny : {recipe.author.name} from{' '}
+        Brought to you by Granny : {recipe.author.name} from
         {recipe.author.country}
       </Author>
 
@@ -60,11 +61,15 @@ function Recipe() {
         <OverviewText>
           Difficulty : {recipe.difficulty}, Cost : {recipe.cost}
         </OverviewText>
+        {/* Shows detailed timing */}
         <Time />
-        <Ingredients />
+        <Ingredients ingredients={ingredients} />
       </OverviewWrapper>
 
-      <Step />
+      {/* Display each step */}
+      {steps.map((step) => (
+        <Step step={step} />
+      ))}
     </RecipeWrapper>
   )
 }

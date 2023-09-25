@@ -1,6 +1,6 @@
+import { Component } from 'react'
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
-import { recipes } from '../../assets/recipes'
 
 const IngredientsWrapper = styled.div`
   display: flex;
@@ -26,25 +26,29 @@ const IngredientText = styled.li`
   padding-right: 20px;
 `
 
-function Ingredients() {
-  const ingredients = recipes.reduce(
-    (acc, recipe) =>
-      recipe.id === '0000001' ? acc.concat(recipe.ingredients) : acc,
-    []
-  )
+class Ingredients extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
 
-  return (
-    <IngredientsWrapper>
-      <IngredientsTitle>Ingredients : </IngredientsTitle>
-      <IngredientsList>
-        {ingredients.map((ingredient) => (
-          <IngredientText key={ingredient.name}>
-            {ingredient.name} {ingredient.quantity} {ingredient.metric}
-          </IngredientText>
-        ))}
-      </IngredientsList>
-    </IngredientsWrapper>
-  )
+  render() {
+    const { ingredients } = this.props
+
+    return (
+      <IngredientsWrapper>
+        <IngredientsTitle>Ingredients : </IngredientsTitle>
+        {/* For every ingredient, shows name, quantity and metric if there is */}
+        <IngredientsList>
+          {ingredients.map((ingredient) => (
+            <IngredientText key={ingredient.name}>
+              {ingredient.name} {ingredient.quantity} {ingredient.metric}
+            </IngredientText>
+          ))}
+        </IngredientsList>
+      </IngredientsWrapper>
+    )
+  }
 }
 
 export default Ingredients
