@@ -3,6 +3,7 @@ export const recipes = [
         "id": "0000001",
         "name": "French Crêpes",
         "description": "Pan cooked & delicious without sugar !",
+        "image" : null,
         "author": {
                 "name": "Simone",
                 "country": "France"
