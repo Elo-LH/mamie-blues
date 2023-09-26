@@ -3,6 +3,7 @@ import colors from '../../utils/style/colors'
 import Step from '../../components/Step'
 import Time from '../../components/Time'
 import Ingredients from '../../components/Ingredients'
+import { useParams } from 'react-router-dom'
 
 import { recipes } from '../../assets/recipes'
 
@@ -36,9 +37,14 @@ const Author = styled.p`
 `
 
 function Recipe() {
-  const recipe = recipes.reduce((acc, recipe) =>
-    recipe.id === '0000001' ? acc.concat(recipe) : null
-  )
+  const { id } = useParams()
+  const stringId = id.toString()
+  console.log(stringId)
+  console.log(recipes)
+
+  const recipe = recipes.find((recipe) => recipe.id === stringId)
+  console.log(recipe)
+
   return (
     <RecipeWrapper>
       <Title key={recipe.id}>{recipe.name}</Title>
