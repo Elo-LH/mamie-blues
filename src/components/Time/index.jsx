@@ -1,6 +1,7 @@
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
 import { Component } from 'react'
+import Clock from '../Clock'
 
 const TimeWrapper = styled.div`
   display: flex;
@@ -21,10 +22,14 @@ class Time extends Component {
 
     return (
       <TimeWrapper>
-        <TimeText>Total time :{timing.total}</TimeText>
-        <TimeText>Preparation time : {timing.preparation}</TimeText>
-        <TimeText>Cooking time : {timing.cooking}</TimeText>
-        <TimeText>Resting time :{timing.resting}</TimeText>
+        <TimeText>Total time :</TimeText>
+        <Clock time={timing.total} />
+        <TimeText>Preparation time :</TimeText>
+        <Clock time={timing.preparation} />
+        <TimeText>Cooking time :</TimeText>
+        <Clock time={timing.cooking} />
+        <TimeText>Resting time :</TimeText>
+        <Clock time={timing.resting} />
       </TimeWrapper>
     )
   }
