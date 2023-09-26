@@ -3,7 +3,10 @@ import colors from '../../utils/style/colors'
 import Step from '../../components/Step'
 import Time from '../../components/Time'
 import Ingredients from '../../components/Ingredients'
+
 import { useParams } from 'react-router-dom'
+import FrenchCrepes from '../../assets/French-crepes.png'
+
 
 import { recipes } from '../../assets/recipes'
 
@@ -15,6 +18,7 @@ const Title = styled.h1`
 
 const Subtitle = styled.h2`
   color: ${colors.primary};
+  padding: 15px;
 `
 
 const RecipeWrapper = styled.div`
@@ -34,9 +38,16 @@ const OverviewText = styled.p`
 const Author = styled.p`
   color: ${colors.dark};
   text-align: justify;
+  padding: 15px;
+`
+const RecipePicture = styled.img`
+  width: 100%;
+  max-height: 850px;
+  object-fit: cover;
 `
 
 function Recipe() {
+
   const { id } = useParams()
   const stringId = id.toString()
   console.log(stringId)
@@ -45,26 +56,44 @@ function Recipe() {
   const recipe = recipes.find((recipe) => recipe.id === stringId)
   console.log(recipe)
 
+ 
+
+  const ingredients = recipe.ingredients
+
+  const steps = recipes.reduce(
+    (acc, recipe) => (recipe.id === '0000001' ? acc.concat(recipe.steps) : acc),
+    []
+  )
+
   return (
     <RecipeWrapper>
       <Title key={recipe.id}>{recipe.name}</Title>
       <Subtitle>{recipe.description}</Subtitle>
+
       <Author>
-        {' '}
-        Brought to you by Granny : {recipe.author.name} from{' '}
+        Brought to you by Granny : {recipe.author.name} from
         {recipe.author.country}
       </Author>
+      <RecipePicture
+        src={FrenchCrepes}
+        alt="Pile of french crepes on a plate"
+      />
 
       <OverviewWrapper>
         <Subtitle>What do you need ?</Subtitle>
         <OverviewText>
           Difficulty : {recipe.difficulty}, Cost : {recipe.cost}
         </OverviewText>
+        {/* Shows detailed timing */}
         <Time />
-        <Ingredients />
+        <OverviewText>Ingredients :</OverviewText>
+        <Ingredients ingredients={ingredients} />
       </OverviewWrapper>
 
-      <Step />
+      {/* Display each step */}
+      {steps.map((step) => (
+        <Step step={step} />
+      ))}
     </RecipeWrapper>
   )
 }

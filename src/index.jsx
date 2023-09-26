@@ -6,6 +6,7 @@ import Recipe from './pages/Recipe'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import RecipesList from './pages/RecipesList'
+import Error from './components/Error'
 import GlobalStyle from './utils/style/GlobalStyle'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -18,6 +19,8 @@ root.render(
         <Route path="/" element={<Home />} />
         <Route path="/recipe/:id" element={<Recipe />} />
         <Route path="/recipes_list" element={<RecipesList />} />
+        <Route path="*" element={<Error />} />
+
       </Routes>
       <Footer />
     </Router>

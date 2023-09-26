@@ -1,14 +1,9 @@
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
-import { recipes } from '../../assets/recipes'
+import Ingredients from '../Ingredients'
+import { Component } from 'react'
 
 const StepWrapper = styled.div`
-  background-color: ${colors.backgroundLight};
-  padding-bottom: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
-`
-const StepsWrapper = styled.div`
   background-color: ${colors.backgroundLight};
   padding-bottom: 50px;
   padding-left: 20px;
@@ -23,31 +18,28 @@ const StepText = styled.p`
   text-align: justify;
 `
 
-function Step() {
-  const steps = recipes.reduce(
-    (acc, recipe) => (recipe.id === '0000001' ? acc.concat(recipe.steps) : acc),
-    []
-  )
-  console.log(steps)
-  const ingredients = steps.reduce(
-    (acc, step) => acc.concat(step.ingredients),
-    []
-  )
-  console.log(ingredients)
+class Step extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
 
-  return (
-    <StepsWrapper>
-      {steps.map((step) => (
-        <StepWrapper>
-          <StepTitle key={step.number}>
-            {step.number} - {step.name}{' '}
-          </StepTitle>
-          <StepText key={step.name}>Ingredients : </StepText>
-          <StepText key={step.description}>{step.description}</StepText>
-        </StepWrapper>
-      ))}
-    </StepsWrapper>
-  )
+  render() {
+    const { step } = this.props
+
+    return (
+      <StepWrapper>
+        <StepTitle key={step.number}>
+          {step.number} - {step.name}{' '}
+        </StepTitle>
+        {step.ingredients.length > 0 ? (
+          // Create list of ingredients for this specific step, only if there is some
+          <Ingredients ingredients={step.ingredients} />
+        ) : null}
+        <StepText key={step.description}>{step.description}</StepText>
+      </StepWrapper>
+    )
+  }
 }
 
 export default Step
