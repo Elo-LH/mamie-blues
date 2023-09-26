@@ -30,12 +30,6 @@ const OverviewText = styled.p`
   color: ${colors.secondary};
 `
 
-const TimeWrapper = styled.div`
-  background-color: ${colors.backgroundDark};
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-`
 const Author = styled.p`
   color: ${colors.dark};
   text-align: justify;
