@@ -1,6 +1,6 @@
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
-import { recipes } from '../../assets/recipes'
+import { Component } from 'react'
 
 const TimeWrapper = styled.div`
   display: flex;
@@ -11,19 +11,23 @@ const TimeWrapper = styled.div`
 const TimeText = styled.p`
   color: ${colors.secondary};
 `
-function Step() {
-  const time = recipes.reduce((acc, recipe) =>
-    recipe.id === '0000001' ? acc.concat(recipe.timing) : acc
-  )
+class Time extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {}
+  }
+  render() {
+    const { timing } = this.props
 
-  return (
-    <TimeWrapper>
-      <TimeText>Total time :{time.timing.total}</TimeText>
-      <TimeText>Preparation time : {time.timing.preparation}</TimeText>
-      <TimeText>Cooking time : {time.timing.cooking}</TimeText>
-      <TimeText>Resting time :{time.timing.resting}</TimeText>
-    </TimeWrapper>
-  )
+    return (
+      <TimeWrapper>
+        <TimeText>Total time :{timing.total}</TimeText>
+        <TimeText>Preparation time : {timing.preparation}</TimeText>
+        <TimeText>Cooking time : {timing.cooking}</TimeText>
+        <TimeText>Resting time :{timing.resting}</TimeText>
+      </TimeWrapper>
+    )
+  }
 }
 
-export default Step
+export default Time
