@@ -19,7 +19,8 @@ function Header() {
     <NavContainer>
       <SiteName>Mamie Blues</SiteName>
       <StyledLink to="/">Home</StyledLink>
-      <StyledLink to="/recipe">Recipe</StyledLink>
+      <StyledLink to="/recipes_list">Recipes List</StyledLink>
+      <StyledLink to="/recipe">Current Recipe</StyledLink>
     </NavContainer>
   )
 }

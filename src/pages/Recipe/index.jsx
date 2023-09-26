@@ -3,7 +3,10 @@ import colors from '../../utils/style/colors'
 import Step from '../../components/Step'
 import Time from '../../components/Time'
 import Ingredients from '../../components/Ingredients'
+
+import { useParams } from 'react-router-dom'
 import FrenchCrepes from '../../assets/French-crepes.png'
+
 
 import { recipes } from '../../assets/recipes'
 
@@ -44,9 +47,16 @@ const RecipePicture = styled.img`
 `
 
 function Recipe() {
-  const recipe = recipes.reduce((acc, recipe) =>
-    recipe.id === '0000001' ? acc.concat(recipe) : null
-  )
+
+  const { id } = useParams()
+  const stringId = id.toString()
+  console.log(stringId)
+  console.log(recipes)
+
+  const recipe = recipes.find((recipe) => recipe.id === stringId)
+  console.log(recipe)
+
+ 
 
   const ingredients = recipe.ingredients
 
