@@ -8,6 +8,7 @@ const ClockWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `
+// Border element of the clock
 const ClockBorder = styled.div`
   display: inline-block;
   width: 110px;
@@ -32,7 +33,7 @@ const ClockBorder = styled.div`
     linear-gradient(60deg, transparent 50%, #507d9c 50%, transparent 51%),
     linear-gradient(-60deg, transparent 50%, #507d9c 50%, transparent 51%);
 `
-
+// Internal element of the clock filled depending on time required
 const ClockImage = styled.div`
 position: relative;
 top: 5px;
@@ -184,7 +185,34 @@ left: 5px;
 const ClockText = styled.p`
   color: ${colors.dark};
 `
+// This function takes the time in minutes and format it to days-hours-min
+function toDays(number) {
+  var unitNames = ['day', 'hour', 'min']
+  var resultTable = [0, 0, 0]
+  var unitNumber = [1440, 60]
 
+  var result = ''
+
+  for (let i = 0; i < 2; i++) {
+    while (number / unitNumber[i] >= 1) {
+      if (resultTable[i] === 1) {
+        unitNames[i] += 's'
+      }
+      number -= unitNumber[i]
+      resultTable[i]++
+    }
+  }
+
+  resultTable[2] = number
+
+  for (let i = 0; i < 3; i++) {
+    if (resultTable[i] !== 0) {
+      result += resultTable[i] + ' ' + unitNames[i] + ' - '
+    }
+  }
+
+  return result.slice(0, -3)
+}
 class Clock extends Component {
   constructor(props) {
     super(props)
@@ -262,7 +290,7 @@ class Clock extends Component {
             alt="clock image"
           ></ClockImage>
         </ClockBorder>
-        <ClockText>{minutes} minutes</ClockText>
+        <ClockText>{toDays(minutes)}</ClockText>
       </ClockWrapper>
     )
   }

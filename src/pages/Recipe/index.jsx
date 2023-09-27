@@ -29,6 +29,11 @@ const OverviewWrapper = styled.div`
   background-color: ${colors.backgroundDark};
   padding: 20px;
 `
+const TextWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+`
 
 const TimeGrid = styled.div`
   border-radius: 20px;
@@ -87,9 +92,10 @@ function Recipe() {
 
       <OverviewWrapper>
         <Subtitle>What do you need ?</Subtitle>
-        <OverviewText>
-          Difficulty : {recipe.difficulty}, Cost : {recipe.cost}
-        </OverviewText>
+        <TextWrapper>
+          <OverviewText>Difficulty : {recipe.difficulty}</OverviewText>
+          <OverviewText>Cost : {recipe.cost}</OverviewText>
+        </TextWrapper>
 
         {/* Shows detailed timing */}
         <TimeGrid>
@@ -99,6 +105,7 @@ function Recipe() {
         </TimeGrid>
 
         <OverviewText>Ingredients :</OverviewText>
+
         <Ingredients ingredients={ingredients} />
       </OverviewWrapper>
 
