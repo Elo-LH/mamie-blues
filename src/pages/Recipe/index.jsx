@@ -7,7 +7,6 @@ import Ingredients from '../../components/Ingredients'
 import { useParams } from 'react-router-dom'
 import FrenchCrepes from '../../assets/French-crepes.png'
 
-
 import { recipes } from '../../assets/recipes'
 
 const Title = styled.h1`
@@ -31,6 +30,19 @@ const OverviewWrapper = styled.div`
   padding: 20px;
 `
 
+const TimeGrid = styled.div`
+  border-radius: 20px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`
+
 const OverviewText = styled.p`
   color: ${colors.secondary};
 `
@@ -47,23 +59,17 @@ const RecipePicture = styled.img`
 `
 
 function Recipe() {
-
+  // Retrieving id from the url param
   const { id } = useParams()
-  const stringId = id.toString()
-  console.log(stringId)
-  console.log(recipes)
 
-  const recipe = recipes.find((recipe) => recipe.id === stringId)
+  // Find recipe by id in the recipes list data
+  const recipe = recipes.find((recipe) => recipe.id === id)
   console.log(recipe)
 
- 
-
+  // Defining props to give to components
   const ingredients = recipe.ingredients
-
-  const steps = recipes.reduce(
-    (acc, recipe) => (recipe.id === '0000001' ? acc.concat(recipe.steps) : acc),
-    []
-  )
+  const timing = recipe.timing
+  const steps = recipe.steps
 
   return (
     <RecipeWrapper>
@@ -84,8 +90,14 @@ function Recipe() {
         <OverviewText>
           Difficulty : {recipe.difficulty}, Cost : {recipe.cost}
         </OverviewText>
+
         {/* Shows detailed timing */}
-        <Time />
+        <TimeGrid>
+          {timing.map((time) => (
+            <Time time={time} />
+          ))}
+        </TimeGrid>
+
         <OverviewText>Ingredients :</OverviewText>
         <Ingredients ingredients={ingredients} />
       </OverviewWrapper>
