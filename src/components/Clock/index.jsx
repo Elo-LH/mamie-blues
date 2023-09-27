@@ -161,16 +161,15 @@ class Clock extends Component {
   }
 
   render() {
-    const { time } = this.props
+    const { minutes } = this.props
 
-    console.log(time)
+    // Determining background color and clock color depending on time
     var clockColor = ''
     var clockBackground = ''
-
-    if (time <= 60) {
+    if (minutes <= 60) {
       clockColor = 'green'
       clockBackground = `${colors.backgroundDark}`
-    } else if (time <= 120) {
+    } else if (minutes <= 120) {
       clockColor = 'orange'
       clockBackground = 'green'
     } else {
@@ -180,9 +179,10 @@ class Clock extends Component {
     console.log(clockColor)
     console.log(clockBackground)
 
+    // Determining minutes display on the clock
     var clockFilling = ''
-    const minutes = (time + 60) % 60
-    switch (minutes) {
+    const minutesDisplayed = (minutes + 60) % 60
+    switch (minutesDisplayed) {
       case 5:
         clockFilling = 'five'
         break
@@ -229,7 +229,7 @@ class Clock extends Component {
           className={clockFilling}
           alt="clock image"
         ></ClockImage>
-        <ClockText>{time}</ClockText>
+        <ClockText>{minutes}</ClockText>
       </ClockWrapper>
     )
   }

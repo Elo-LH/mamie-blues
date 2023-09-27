@@ -8,6 +8,11 @@ const TimeWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `
+const ClockWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`
 
 const TimeText = styled.p`
   color: ${colors.secondary};
@@ -18,18 +23,12 @@ class Time extends Component {
     this.state = {}
   }
   render() {
-    const { timing } = this.props
+    const { time } = this.props
 
     return (
       <TimeWrapper>
-        <TimeText>Total time :</TimeText>
-        <Clock time={timing.total} />
-        <TimeText>Preparation time :</TimeText>
-        <Clock time={timing.preparation} />
-        <TimeText>Cooking time :</TimeText>
-        <Clock time={timing.cooking} />
-        <TimeText>Resting time :</TimeText>
-        <Clock time={timing.resting} />
+        <TimeText>{time.name} time</TimeText>
+        <Clock minutes={time.minutes} />
       </TimeWrapper>
     )
   }

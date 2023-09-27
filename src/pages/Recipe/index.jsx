@@ -78,7 +78,9 @@ function Recipe() {
           Difficulty : {recipe.difficulty}, Cost : {recipe.cost}
         </OverviewText>
         {/* Shows detailed timing */}
-        <Time timing={timing} />
+        {timing.map((time) => (
+          <Time time={time} />
+        ))}
         <OverviewText>Ingredients :</OverviewText>
         <Ingredients ingredients={ingredients} />
       </OverviewWrapper>
