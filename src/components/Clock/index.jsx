@@ -8,6 +8,7 @@ const ClockWrapper = styled.div`
   justify-content: center;
   align-items: center;
 `
+// Border element of the clock
 const ClockBorder = styled.div`
   display: inline-block;
   width: 110px;
@@ -32,7 +33,7 @@ const ClockBorder = styled.div`
     linear-gradient(60deg, transparent 50%, #507d9c 50%, transparent 51%),
     linear-gradient(-60deg, transparent 50%, #507d9c 50%, transparent 51%);
 `
-
+// Internal element of the clock filled depending on time required
 const ClockImage = styled.div`
 position: relative;
 top: 5px;
@@ -184,7 +185,7 @@ left: 5px;
 const ClockText = styled.p`
   color: ${colors.dark};
 `
-
+// This function takes the time in minutes and format it to days-hours-min
 function toDays(number) {
   var unitNames = ['day', 'hour', 'min']
   var resultTable = [0, 0, 0]

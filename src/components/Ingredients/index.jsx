@@ -6,16 +6,20 @@ const IngredientsWrapper = styled.div``
 
 const IngredientsList = styled.div`
   color: ${colors.secondary};
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: start;
-  align-items: center;
+  column-count: 1;
+  @media (min-width: 600px) {
+    column-count: 2;
+  }
+  @media (min-width: 900px) {
+    column-count: 3;
+  }
 `
 
 const IngredientText = styled.p`
   color: ${colors.secondary};
   padding-right: 15px;
+  display: inline-block;
+  width: 100%;
 `
 
 class Ingredients extends Component {
