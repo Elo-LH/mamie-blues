@@ -4,18 +4,13 @@ import { Component } from 'react'
 import Clock from '../Clock'
 
 const TimeWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`
-const ClockWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: ${colors.backgroundLight};
+  border-radius: 20px;
 `
 
 const TimeText = styled.p`
-  color: ${colors.secondary};
+  color: ${colors.dark};
+  text-align: center;
 `
 class Time extends Component {
   constructor(props) {
@@ -27,7 +22,7 @@ class Time extends Component {
 
     return (
       <TimeWrapper>
-        <TimeText>{time.name} time</TimeText>
+        <TimeText>{time.name}</TimeText>
         <Clock minutes={time.minutes} />
       </TimeWrapper>
     )

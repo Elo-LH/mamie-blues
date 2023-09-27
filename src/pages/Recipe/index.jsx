@@ -30,6 +30,19 @@ const OverviewWrapper = styled.div`
   padding: 20px;
 `
 
+const TimeGrid = styled.div`
+  border-radius: 20px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media (min-width: 900px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+`
+
 const OverviewText = styled.p`
   color: ${colors.secondary};
 `
@@ -77,10 +90,14 @@ function Recipe() {
         <OverviewText>
           Difficulty : {recipe.difficulty}, Cost : {recipe.cost}
         </OverviewText>
+
         {/* Shows detailed timing */}
-        {timing.map((time) => (
-          <Time time={time} />
-        ))}
+        <TimeGrid>
+          {timing.map((time) => (
+            <Time time={time} />
+          ))}
+        </TimeGrid>
+
         <OverviewText>Ingredients :</OverviewText>
         <Ingredients ingredients={ingredients} />
       </OverviewWrapper>

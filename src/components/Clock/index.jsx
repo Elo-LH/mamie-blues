@@ -2,15 +2,47 @@ import { Component } from 'react'
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
 
-const ClockWrapper = styled.div``
+const ClockWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`
+const ClockBorder = styled.div`
+  display: inline-block;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  position: relative;
+  background-color: ${colors.backgroundDark};
+  background-image: linear-gradient(
+      to right,
+      transparent 49%,
+      ${colors.backgroundLight} 49%,
+      transparent 51%
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 49%,
+      ${colors.backgroundLight} 49%,
+      transparent 51%
+    ),
+    linear-gradient(-30deg, transparent 50%, #507d9c 50%, transparent 51%),
+    linear-gradient(30deg, transparent 50%, #507d9c 50%, transparent 51%),
+    linear-gradient(60deg, transparent 50%, #507d9c 50%, transparent 51%),
+    linear-gradient(-60deg, transparent 50%, #507d9c 50%, transparent 51%);
+`
 
 const ClockImage = styled.div`
-  margin: 20px;
+position: relative;
+top: 5px;
+left: 5px;
   display: inline-block;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  border: 10px solid white;
+  border: none;
+}
   &.five {
     background-image: linear-gradient(
         -60deg,
@@ -150,8 +182,7 @@ const ClockImage = styled.div`
 `
 
 const ClockText = styled.p`
-  color: ${colors.secondary};
-  padding-right: 15px;
+  color: ${colors.dark};
 `
 
 class Clock extends Component {
@@ -164,17 +195,17 @@ class Clock extends Component {
     const { minutes } = this.props
 
     // Determining background color and clock color depending on time
-    var clockColor = ''
-    var clockBackground = ''
-    if (minutes <= 60) {
-      clockColor = 'green'
-      clockBackground = `${colors.backgroundDark}`
-    } else if (minutes <= 120) {
+    var clockColor = 'green'
+    var clockBackground = `${colors.backgroundLight}`
+    if (minutes > 60) {
       clockColor = 'orange'
       clockBackground = 'green'
-    } else {
+    } else if (minutes > 120) {
       clockColor = 'red'
       clockBackground = 'orange'
+    } else if (minutes > 180) {
+      clockColor = 'red'
+      clockBackground = 'black'
     }
     console.log(clockColor)
     console.log(clockBackground)
@@ -223,13 +254,15 @@ class Clock extends Component {
 
     return (
       <ClockWrapper>
-        <ClockImage
-          clockColor={clockColor}
-          clockBackground={clockBackground}
-          className={clockFilling}
-          alt="clock image"
-        ></ClockImage>
-        <ClockText>{minutes}</ClockText>
+        <ClockBorder>
+          <ClockImage
+            clockColor={clockColor}
+            clockBackground={clockBackground}
+            className={clockFilling}
+            alt="clock image"
+          ></ClockImage>
+        </ClockBorder>
+        <ClockText>{minutes} minutes</ClockText>
       </ClockWrapper>
     )
   }

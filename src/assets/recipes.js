@@ -10,10 +10,10 @@ export const recipes = [
     difficulty: 'Easy',
     cost: 'Cheap',
     timing: [
-      { name: 'total', minutes: 100 },
-      { name: 'preparation', minutes: 10 },
-      { name: 'cooking', minutes: 30 },
-      { name: 'resting', minutes: 60 },
+      { name: 'Total', minutes: 100 },
+      { name: 'Preparation', minutes: 10 },
+      { name: 'Cooking', minutes: 30 },
+      { name: 'Resting', minutes: 60 },
     ],
     ingredients: [
       {
@@ -95,10 +95,10 @@ export const recipes = [
     difficulty: 'Easy',
     cost: 'Cheap',
     timing: [
-      { name: 'total', minutes: 1560 },
-      { name: 'preparation', minutes: 90 },
-      { name: 'cooking', minutes: 30 },
-      { name: 'resting', minutes: 1440 },
+      { name: 'Total', minutes: 1560 },
+      { name: 'Preparation', minutes: 90 },
+      { name: 'Cooking', minutes: 30 },
+      { name: 'Resting', minutes: 1440 },
     ],
     ingredients: [
       {
@@ -180,10 +180,10 @@ export const recipes = [
     difficulty: 'Easy',
     cost: 'Cheap',
     timing: [
-      { name: 'total', minutes: 35 },
-      { name: 'preparation', minutes: 20 },
-      { name: 'cooking', minutes: 15 },
-      { name: 'resting', minutes: 0 },
+      { name: 'Total', minutes: 35 },
+      { name: 'Preparation', minutes: 20 },
+      { name: 'Cooking', minutes: 15 },
+      { name: 'Resting', minutes: 0 },
     ],
     ingredients: [
       {
