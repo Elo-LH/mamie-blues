@@ -95,10 +95,10 @@ export const recipes = [
     difficulty: 'Easy',
     cost: 'Cheap',
     timing: {
-      preparation: 10,
+      preparation: 90,
       cooking: 30,
-      resting: 60,
-      total: 100,
+      resting: 1440,
+      total: 1560,
     },
     ingredients: [
       {
@@ -180,10 +180,10 @@ export const recipes = [
     difficulty: 'Easy',
     cost: 'Cheap',
     timing: {
-      preparation: 10,
-      cooking: 30,
-      resting: 60,
-      total: 100,
+      preparation: 20,
+      cooking: 15,
+      resting: 0,
+      total: 35,
     },
     ingredients: [
       {
