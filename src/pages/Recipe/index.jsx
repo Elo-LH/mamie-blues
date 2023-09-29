@@ -2,7 +2,9 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import Step from '../../components/Step'
 import Time from '../../components/Time'
+import Servings from '../../components/Servings'
 import Ingredients from '../../components/Ingredients'
+import Error from '../../components/Error'
 
 import { useParams } from 'react-router-dom'
 import FrenchCrepes from '../../assets/French-crepes.png'
@@ -63,16 +65,26 @@ const RecipePicture = styled.img`
   object-fit: cover;
 `
 
+// Find recipe by id in the recipes list data
+export function findRecipe(id) {
+  return recipes.find((recipe) => recipe.id === id)
+}
+
 function Recipe() {
   // Retrieving id from the url param
   const { id } = useParams()
 
   // Find recipe by id in the recipes list data
-  const recipe = recipes.find((recipe) => recipe.id === id)
-  console.log(recipe)
+  const recipe = findRecipe(id)
+
+  // Displays Error if recipe is not found
+  if (!recipe) {
+    return <Error />
+  }
 
   // Defining props to give to components
   const ingredients = recipe.ingredients
+  const servings = recipe.servings
   const timing = recipe.timing
   const steps = recipe.steps
 
@@ -82,7 +94,7 @@ function Recipe() {
       <Subtitle>{recipe.description}</Subtitle>
 
       <Author>
-        Brought to you by Granny : {recipe.author.name} from
+        Brought to you by Granny : {recipe.author.name} from{' '}
         {recipe.author.country}
       </Author>
       <RecipePicture
@@ -105,8 +117,9 @@ function Recipe() {
         </TimeGrid>
 
         <OverviewText>Ingredients :</OverviewText>
+        <Servings servings={servings} />
 
-        <Ingredients ingredients={ingredients} />
+        <Ingredients ingredients={ingredients} servings={servings} />
       </OverviewWrapper>
 
       {/* Display each step */}
