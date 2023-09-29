@@ -2,7 +2,7 @@ export const recipes = [
   {
     id: '0000001',
     name: 'French Crêpes',
-    description: 'Pan cooked & delicious without sugar !',
+    description: 'Pan cooked & delicious without sugar',
     author: {
       name: 'Simone',
       country: 'France',
@@ -88,15 +88,15 @@ export const recipes = [
   {
     id: '0000002',
     name: 'Tortillas',
-    description: 'Pan cooked & delicious without sugar !',
+    description: 'Fill it with whatever you want',
     author: {
-      name: 'Simone',
-      country: 'France',
+      name: 'Rosa',
+      country: 'Spain',
     },
     difficulty: 'Easy',
     cost: 'Cheap',
     timing: [
-      { name: 'Total', minutes: 1560 },
+      { name: 'Total', minutes: 1540 },
       { name: 'Preparation', minutes: 90 },
       { name: 'Cooking', minutes: 30 },
       { name: 'Resting', minutes: 1440 },
@@ -174,10 +174,10 @@ export const recipes = [
   {
     id: '0000003',
     name: 'Pancakes',
-    description: 'Pan cooked & delicious without sugar !',
+    description: 'With chocolate chips and apple to make it more fluffy',
     author: {
-      name: 'Simone',
-      country: 'France',
+      name: 'Elizabeth',
+      country: 'England',
     },
     difficulty: 'Easy',
     cost: 'Cheap',
@@ -195,13 +195,33 @@ export const recipes = [
         metric: 'gram',
       },
       {
-        name: 'Milk',
+        name: 'Baking powder',
         quantity: 1,
-        metric: 'liter',
+        metric: 'table spoon',
       },
       {
-        name: 'Eggs',
-        quantity: 5,
+        name: 'Sugar',
+        quantity: 2,
+        metric: 'table spoon',
+      },
+      {
+        name: 'Chocolate',
+        quantity: 100,
+        metric: 'gram',
+      },
+      {
+        name: 'Apple compote',
+        quantity: 20,
+        metric: 'gram',
+      },
+      {
+        name: 'Oil',
+        quantity: 2,
+        metric: 'table spoon',
+      },
+      {
+        name: 'Egg',
+        quantity: 1,
         metric: null,
       },
     ],
@@ -260,10 +280,10 @@ export const recipes = [
   {
     id: '0000004',
     name: 'Pasta',
-    description: 'Pan cooked & delicious without sugar !',
+    description: `With fresh eggs, it's something else !`,
     author: {
-      name: 'Simone',
-      country: 'France',
+      name: 'Lucia',
+      country: 'Italy',
     },
     difficulty: 'Easy',
     cost: 'Cheap',

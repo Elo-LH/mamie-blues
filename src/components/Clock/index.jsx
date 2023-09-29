@@ -238,8 +238,8 @@ class Clock extends Component {
       clockColor = 'red'
       clockBackground = 'orange'
     } else if (minutes > 180) {
-      clockColor = 'red'
-      clockBackground = 'black'
+      clockColor = `purple`
+      clockBackground = 'red'
     }
     console.log(clockColor)
     console.log(clockBackground)

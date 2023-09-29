@@ -94,7 +94,7 @@ function Recipe() {
       <Subtitle>{recipe.description}</Subtitle>
 
       <Author>
-        Brought to you by Granny : {recipe.author.name} from
+        Brought to you by Granny : {recipe.author.name} from{' '}
         {recipe.author.country}
       </Author>
       <RecipePicture
