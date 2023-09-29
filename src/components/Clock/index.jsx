@@ -35,15 +35,14 @@ const ClockBorder = styled.div`
 `
 // Internal element of the clock filled depending on time required
 const ClockImage = styled.div`
-position: relative;
-top: 5px;
-left: 5px;
+  position: relative;
+  top: 5px;
+  left: 5px;
   display: inline-block;
   width: 100px;
   height: 100px;
   border-radius: 50%;
   border: none;
-}
   &.five {
     background-image: linear-gradient(
         -60deg,
@@ -180,6 +179,9 @@ left: 5px;
   &.full {
     background-color: ${(props) => props.clockColor};
   }
+  &.null {
+    background-color: ${(props) => props.clockBackground};
+  }
 `
 
 const ClockText = styled.p`
@@ -225,14 +227,14 @@ class Clock extends Component {
 
   render() {
     const { minutes } = this.props
-
+    console.log(minutes)
     // Determining background color and clock color depending on time
     var clockColor = 'green'
     var clockBackground = `${colors.backgroundLight}`
-    if (minutes > 60) {
+    if (minutes > 60 && minutes <= 120) {
       clockColor = 'orange'
       clockBackground = 'green'
-    } else if (minutes > 120) {
+    } else if (minutes > 120 && minutes <= 180) {
       clockColor = 'red'
       clockBackground = 'orange'
     } else if (minutes > 180) {
@@ -244,44 +246,49 @@ class Clock extends Component {
 
     // Determining minutes display on the clock
     var clockFilling = ''
-    const minutesDisplayed = (minutes + 60) % 60
-    switch (minutesDisplayed) {
-      case 5:
-        clockFilling = 'five'
-        break
-      case 10:
-        clockFilling = 'ten'
-        break
-      case 15:
-        clockFilling = 'fifteen'
-        break
-      case 20:
-        clockFilling = 'twenty'
-        break
-      case 25:
-        clockFilling = 'twenty-five'
-        break
-      case 30:
-        clockFilling = 'thirty'
-        break
-      case 35:
-        clockFilling = 'thirty-five'
-        break
-      case 40:
-        clockFilling = 'fourty'
-        break
-      case 45:
-        clockFilling = 'fourty-five'
-        break
-      case 50:
-        clockFilling = 'fifty'
-        break
-      case 55:
-        clockFilling = 'fifty-five'
-        break
-      default:
-        clockFilling = 'full'
+    if (minutes === 0) {
+      clockFilling = 'null'
+    } else {
+      const minutesDisplayed = (minutes + 60) % 60
+      switch (minutesDisplayed) {
+        case 5:
+          clockFilling = 'five'
+          break
+        case 10:
+          clockFilling = 'ten'
+          break
+        case 15:
+          clockFilling = 'fifteen'
+          break
+        case 20:
+          clockFilling = 'twenty'
+          break
+        case 25:
+          clockFilling = 'twenty-five'
+          break
+        case 30:
+          clockFilling = 'thirty'
+          break
+        case 35:
+          clockFilling = 'thirty-five'
+          break
+        case 40:
+          clockFilling = 'fourty'
+          break
+        case 45:
+          clockFilling = 'fourty-five'
+          break
+        case 50:
+          clockFilling = 'fifty'
+          break
+        case 55:
+          clockFilling = 'fifty-five'
+          break
+        default:
+          clockFilling = 'full'
+      }
     }
+
     console.log(clockFilling)
 
     return (
