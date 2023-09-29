@@ -15,6 +15,7 @@ export const recipes = [
       { name: 'Cooking', minutes: 30 },
       { name: 'Resting', minutes: 60 },
     ],
+    servings: 6,
     ingredients: [
       {
         name: 'Flour',
@@ -100,6 +101,7 @@ export const recipes = [
       { name: 'Cooking', minutes: 30 },
       { name: 'Resting', minutes: 1440 },
     ],
+    servings: 6,
     ingredients: [
       {
         name: 'Flour',
@@ -185,6 +187,7 @@ export const recipes = [
       { name: 'Cooking', minutes: 15 },
       { name: 'Resting', minutes: 0 },
     ],
+    servings: 6,
     ingredients: [
       {
         name: 'Flour',
@@ -270,6 +273,7 @@ export const recipes = [
       { name: 'Cooking', minutes: 60 },
       { name: 'Resting', minutes: 0 },
     ],
+    servings: 6,
     ingredients: [
       {
         name: 'Flour',

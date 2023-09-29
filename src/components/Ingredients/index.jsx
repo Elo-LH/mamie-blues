@@ -35,7 +35,7 @@ class Ingredients extends Component {
   }
 
   render() {
-    const { ingredients } = this.props
+    const { ingredients, servings } = this.props
 
     return (
       <IngredientsWrapper>

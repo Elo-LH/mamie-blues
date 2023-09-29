@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import Step from '../../components/Step'
 import Time from '../../components/Time'
+import Servings from '../../components/Servings'
 import Ingredients from '../../components/Ingredients'
 import Error from '../../components/Error'
 
@@ -83,6 +84,7 @@ function Recipe() {
 
   // Defining props to give to components
   const ingredients = recipe.ingredients
+  const servings = recipe.servings
   const timing = recipe.timing
   const steps = recipe.steps
 
@@ -115,8 +117,9 @@ function Recipe() {
         </TimeGrid>
 
         <OverviewText>Ingredients :</OverviewText>
+        <Servings servings={servings} />
 
-        <Ingredients ingredients={ingredients} />
+        <Ingredients ingredients={ingredients} servings={servings} />
       </OverviewWrapper>
 
       {/* Display each step */}
