@@ -1,4 +1,5 @@
-import { toDaysHoursMin } from './'
+import Clock, { toDaysHoursMin } from './'
+import { render, screen } from '@testing-library/react'
 
 describe('Function toDaysHoursMin', () => {
   test(`given null returns 'None'`, () => {
@@ -14,3 +15,9 @@ describe('Function toDaysHoursMin', () => {
     expect(toDaysHoursMin(3640)).toEqual('2 days - 12 hours - 40 min')
   })
 })
+
+// describe('Clock component', () => {
+//   test('render without crash', async () => {
+//     render(<Clock />)
+//   })
+// })
