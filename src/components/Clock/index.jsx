@@ -186,32 +186,36 @@ const ClockText = styled.p`
   color: ${colors.dark};
 `
 // This function takes the time in minutes and format it to days-hours-min
-function toDays(number) {
+export function toDaysHoursMin(number) {
   var unitNames = ['day', 'hour', 'min']
   var resultTable = [0, 0, 0]
   var unitNumber = [1440, 60]
 
   var result = ''
 
-  for (let i = 0; i < 2; i++) {
-    while (number / unitNumber[i] >= 1) {
-      if (resultTable[i] === 1) {
-        unitNames[i] += 's'
+  if (number === 0) {
+    return 'None'
+  } else {
+    for (let i = 0; i < 2; i++) {
+      while (number / unitNumber[i] >= 1) {
+        if (resultTable[i] === 1) {
+          unitNames[i] += 's'
+        }
+        number -= unitNumber[i]
+        resultTable[i]++
       }
-      number -= unitNumber[i]
-      resultTable[i]++
     }
-  }
 
-  resultTable[2] = number
+    resultTable[2] = number
 
-  for (let i = 0; i < 3; i++) {
-    if (resultTable[i] !== 0) {
-      result += resultTable[i] + ' ' + unitNames[i] + ' - '
+    for (let i = 0; i < 3; i++) {
+      if (resultTable[i] !== 0) {
+        result += resultTable[i] + ' ' + unitNames[i] + ' - '
+      }
     }
-  }
 
-  return result.slice(0, -3)
+    return result.slice(0, -3)
+  }
 }
 class Clock extends Component {
   constructor(props) {
@@ -290,7 +294,7 @@ class Clock extends Component {
             alt="clock image"
           ></ClockImage>
         </ClockBorder>
-        <ClockText>{toDays(minutes)}</ClockText>
+        <ClockText>{toDaysHoursMin(minutes)}</ClockText>
       </ClockWrapper>
     )
   }

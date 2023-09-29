@@ -22,6 +22,12 @@ const IngredientText = styled.p`
   width: 100%;
 `
 
+// Get a random fruit emoji as list marker
+export const getEmoji = () => {
+  const emojis = ['🍇', '🍓', '🍊', '🍐']
+  return emojis[~~(Math.random() * emojis.length)]
+}
+
 class Ingredients extends Component {
   constructor(props) {
     super(props)
@@ -30,12 +36,6 @@ class Ingredients extends Component {
 
   render() {
     const { ingredients } = this.props
-
-    // Get a random fruit emoji as list marker
-    const getEmoji = () => {
-      const emojis = ['🍇', '🍓', '🍊', '🍐']
-      return emojis[~~(Math.random() * emojis.length)]
-    }
 
     return (
       <IngredientsWrapper>
