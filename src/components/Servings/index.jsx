@@ -4,23 +4,26 @@ import styled from 'styled-components'
 
 const ServingsWrapper = styled.div`
   display: flex;
+  background-color: ${colors.backgroundLight};
+  width: fit-content;
+  border-radius: 20px;
 `
 
 const ServingsButton = styled.span`
   background-color: ${colors.secondary};
   color: ${colors.dark};
-  font-size: 3em;
-  align-self: center;
-  text-align: center;
-  padding-right: 20px;
-  padding-left: 20px;
-  border-radius: ${(props) =>
-    props.left
-      ? '100% 0% 0% 100% / 50% 50% 50% 50%'
-      : '0% 100% 100% 0% / 30% 50% 50% 70%'};
+  padding: 10px 20px 10px 20px;
+  border-radius: 20px;
+  font-size: 1.5em;
   @media (min-width: 600px) {
+    font-size: 2em;
+    padding: 20px;
   }
-  @media (min-width: 900px) {
+  &.add-serving-button {
+    box-shadow: -3px 0px 0px ${colors.dark};
+  }
+  &.substract-serving-button {
+    box-shadow: 3px 0px 0px ${colors.dark};
   }
   &:hover {
     cursor: pointer;
@@ -28,11 +31,9 @@ const ServingsButton = styled.span`
 `
 
 const ServingsText = styled.p`
-  height: stretch;
   background-color: ${colors.backgroundLight};
   color: ${colors.dark};
-  border-left: solid ${colors.dark};
-  border-right: solid ${colors.dark};
+  margin: 5px;
   text-align: center;
   align-self: center;
   padding-right: 20px;
