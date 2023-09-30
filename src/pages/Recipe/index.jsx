@@ -10,7 +10,9 @@ import { useParams } from 'react-router-dom'
 import FrenchCrepes from '../../assets/French-crepes.png'
 
 import { recipes } from '../../assets/recipes'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+
+import { FavoritesContext } from '../../utils/context'
 
 const Title = styled.h1`
   color: ${colors.secondary};
@@ -105,6 +107,9 @@ function Recipe() {
   const [servingsProportion, modifyServingsProportion] = useState(1)
 
   // Gestion des favoris
+
+  const { favorites, updateFavorites } = useContext(FavoritesContext)
+
   const [isFavorite, setFavorite] = useState(false)
   const star = isFavorite ? '⭐' : ''
 

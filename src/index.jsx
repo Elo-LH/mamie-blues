@@ -9,21 +9,24 @@ import RecipesList from './pages/RecipesList'
 import Error from './components/Error'
 import GlobalStyle from './utils/style/GlobalStyle'
 import Favorites from './pages/Favorites'
+import { FavoritesProvider } from './utils/context'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <Router>
-      <GlobalStyle />
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/recipe/:id" element={<Recipe />} />
-        <Route path="/recipes_list" element={<RecipesList />} />
-        <Route path="/favorites" element={<Favorites />} />
-        <Route path="*" element={<Error />} />
-      </Routes>
-      <Footer />
+      <FavoritesProvider>
+        <GlobalStyle />
+        <Header />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/recipe/:id" element={<Recipe />} />
+          <Route path="/recipes_list" element={<RecipesList />} />
+          <Route path="/favorites" element={<Favorites />} />
+          <Route path="*" element={<Error />} />
+        </Routes>
+        <Footer />
+      </FavoritesProvider>
     </Router>
   </React.StrictMode>
 )

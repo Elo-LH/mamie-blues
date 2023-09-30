@@ -3,6 +3,8 @@ import colors from '../../utils/style/colors'
 import { Link } from 'react-router-dom'
 import { recipes } from '../../assets/recipes'
 import RecipeCard from '../../components/RecipeCard'
+import { FavoritesContext } from '../../utils/context'
+import { useContext } from 'react'
 
 const ListWrapper = styled.div`
   background-color: ${colors.backgroundLight};
@@ -17,11 +19,12 @@ const ListWrapper = styled.div`
 `
 
 function Favorites() {
+  const { favorites, updateFavorites } = useContext(FavoritesContext)
   return (
     <ListWrapper>
-      {recipes.map((recipe) => (
-        <Link key={`recipe-${recipe.id}`} to={`/recipe/${recipe.id}`}>
-          <RecipeCard recipe={recipe} />
+      {favorites.map((favorite) => (
+        <Link key={`recipe-${favorite.id}`} to={`/recipe/${favorite.id}`}>
+          <RecipeCard recipe={favorite} />
         </Link>
       ))}
     </ListWrapper>
