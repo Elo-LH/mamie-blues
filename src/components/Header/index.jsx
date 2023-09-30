@@ -3,11 +3,13 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 
 const NavContainer = styled.nav`
-  padding: 20px;
+  padding-left: 15px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   background-color: ${colors.backgroundLight};
+  border-bottom: 2px solid ${colors.secondary};
 `
 
 const SiteName = styled.h2`

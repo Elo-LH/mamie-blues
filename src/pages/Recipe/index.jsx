@@ -16,14 +16,17 @@ const Title = styled.h1`
   color: ${colors.secondary};
   text-align: center;
   margin-top: 0px;
+  padding-top: 30px;
 `
 
-const FavButton = styled.span`
-  color: ${colors.secondary};
-  text-align: center;
-  right: 0;
-  background-color: ${colors.backgroundDark};
+const FavButton = styled.p`
+  color: ${colors.dark};
+  background-color: ${colors.secondary};
+  padding: 5px;
+  border-radius: 20px;
+  float: inline-end;
   @media (min-width: 600px) {
+    padding: 15px;
     position: absolute;
     top: 15px;
     right: 10px;
@@ -116,7 +119,7 @@ function Recipe() {
         {star} {recipe.name}
       </Title>
       <FavButton onClick={() => setFavorite(!isFavorite)}>
-        Add to Favorites
+        {isFavorite ? 'Remove ⭐' : 'Add ⭐'}
       </FavButton>
       <Subtitle>{recipe.description}</Subtitle>
 
