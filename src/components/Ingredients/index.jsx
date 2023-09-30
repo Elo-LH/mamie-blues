@@ -35,7 +35,7 @@ class Ingredients extends Component {
   }
 
   render() {
-    const { ingredients, servings } = this.props
+    const { ingredients, servingsProportion } = this.props
 
     return (
       <IngredientsWrapper>
@@ -44,7 +44,8 @@ class Ingredients extends Component {
           {ingredients.map((ingredient) => (
             <IngredientText key={ingredient.name}>
               {getEmoji()}
-              {ingredient.name} {ingredient.quantity} {ingredient.metric}
+              {ingredient.name} {ingredient.quantity * servingsProportion}{' '}
+              {ingredient.metric}
             </IngredientText>
           ))}
         </IngredientsList>

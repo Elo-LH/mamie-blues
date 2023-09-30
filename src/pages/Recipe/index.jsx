@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom'
 import FrenchCrepes from '../../assets/French-crepes.png'
 
 import { recipes } from '../../assets/recipes'
+import { useState } from 'react'
 
 const Title = styled.h1`
   color: ${colors.secondary};
@@ -77,16 +78,17 @@ function Recipe() {
   // Find recipe by id in the recipes list data
   const recipe = findRecipe(id)
 
-  // Displays Error if recipe is not found
-  if (!recipe) {
-    return <Error />
-  }
-
   // Defining props to give to components
   const ingredients = recipe.ingredients
   const servings = recipe.servings
   const timing = recipe.timing
   const steps = recipe.steps
+  const [servingsProportion, modifyServingsProportion] = useState(1)
+
+  // Displays Error if recipe is not found
+  if (!recipe) {
+    return <Error />
+  }
 
   return (
     <RecipeWrapper>
@@ -117,14 +119,21 @@ function Recipe() {
         </TimeGrid>
 
         <OverviewText>Ingredients :</OverviewText>
-        <Servings servings={servings} />
+        <Servings
+          servings={servings}
+          servingsProportion={servingsProportion}
+          modifyServingsProportion={modifyServingsProportion}
+        />
 
-        <Ingredients ingredients={ingredients} servings={servings} />
+        <Ingredients
+          ingredients={ingredients}
+          servingsProportion={servingsProportion}
+        />
       </OverviewWrapper>
 
       {/* Display each step */}
       {steps.map((step) => (
-        <Step step={step} />
+        <Step step={step} servingsProportion={servingsProportion} />
       ))}
     </RecipeWrapper>
   )
