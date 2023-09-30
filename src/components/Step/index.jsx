@@ -25,7 +25,7 @@ class Step extends Component {
   }
 
   render() {
-    const { step } = this.props
+    const { step, servingsProportion } = this.props
 
     return (
       <StepWrapper>
@@ -34,7 +34,10 @@ class Step extends Component {
         </StepTitle>
         {step.ingredients.length > 0 ? (
           // Create list of ingredients for this specific step, only if there is some
-          <Ingredients ingredients={step.ingredients} />
+          <Ingredients
+            ingredients={step.ingredients}
+            servingsProportion={servingsProportion}
+          />
         ) : null}
         <StepText key={step.description}>{step.description}</StepText>
       </StepWrapper>

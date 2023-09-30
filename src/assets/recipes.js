@@ -15,7 +15,7 @@ export const recipes = [
       { name: 'Cooking', minutes: 30 },
       { name: 'Resting', minutes: 60 },
     ],
-    servings: 6,
+    servings: 5,
     ingredients: [
       {
         name: 'Flour',

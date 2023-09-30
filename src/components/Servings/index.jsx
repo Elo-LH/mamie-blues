@@ -39,6 +39,26 @@ const ServingsText = styled.p`
   padding-left: 20px;
 `
 
+export function substractServing(
+  servings,
+  servingsProportion,
+  modifyServingsProportion
+) {
+  const substractProportion = (servings - 1) / servings
+  const oneSubstract = 1 - substractProportion
+  modifyServingsProportion(servingsProportion - oneSubstract)
+}
+
+export function addServing(
+  servings,
+  servingsProportion,
+  modifyServingsProportion
+) {
+  const addProportion = (servings + 1) / servings
+  const oneAdd = addProportion - 1
+  modifyServingsProportion(servingsProportion + oneAdd)
+}
+
 class Servings extends Component {
   constructor(props) {
     super(props)
@@ -46,13 +66,34 @@ class Servings extends Component {
   }
 
   render() {
-    const { servings } = this.props
+    const { servings, servingsProportion, modifyServingsProportion } =
+      this.props
 
     return (
       <ServingsWrapper>
-        <ServingsButton left>-</ServingsButton>
-        <ServingsText>{servings} 🍴</ServingsText>
-        <ServingsButton right>+</ServingsButton>
+        <ServingsButton
+          className="substract-serving-button"
+          onClick={() =>
+            substractServing(
+              servings,
+              servingsProportion,
+              modifyServingsProportion
+            )
+          }
+        >
+          -
+        </ServingsButton>
+        <ServingsText>
+          {Math.round(servings * servingsProportion)} 🍴
+        </ServingsText>
+        <ServingsButton
+          className="add-serving-button"
+          onClick={() =>
+            addServing(servings, servingsProportion, modifyServingsProportion)
+          }
+        >
+          +
+        </ServingsButton>
       </ServingsWrapper>
     )
   }
