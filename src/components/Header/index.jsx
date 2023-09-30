@@ -20,7 +20,7 @@ function Header() {
       <SiteName>Mamie Blues</SiteName>
       <StyledLink to="/">Home</StyledLink>
       <StyledLink to="/recipes_list">Recipes List</StyledLink>
-      <StyledLink to="/recipe">Current Recipe</StyledLink>
+      <StyledLink to="/favorites">My Favorites</StyledLink>
     </NavContainer>
   )
 }

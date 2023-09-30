@@ -18,6 +18,21 @@ const Title = styled.h1`
   margin-top: 0px;
 `
 
+const FavButton = styled.span`
+  color: ${colors.secondary};
+  text-align: center;
+  right: 0;
+  background-color: ${colors.backgroundDark};
+  @media (min-width: 600px) {
+    position: absolute;
+    top: 15px;
+    right: 10px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
+`
+
 const Subtitle = styled.h2`
   color: ${colors.primary};
   padding: 15px;
@@ -26,6 +41,7 @@ const Subtitle = styled.h2`
 const RecipeWrapper = styled.div`
   background-color: ${colors.backgroundLight};
   margin: 0px;
+  position: relative;
 `
 
 const OverviewWrapper = styled.div`
@@ -85,6 +101,10 @@ function Recipe() {
   const steps = recipe.steps
   const [servingsProportion, modifyServingsProportion] = useState(1)
 
+  // Gestion des favoris
+  const [isFavorite, setFavorite] = useState(false)
+  const star = isFavorite ? '⭐' : ''
+
   // Displays Error if recipe is not found
   if (!recipe) {
     return <Error />
@@ -92,7 +112,12 @@ function Recipe() {
 
   return (
     <RecipeWrapper>
-      <Title key={recipe.id}>{recipe.name}</Title>
+      <Title key={recipe.id}>
+        {star} {recipe.name}
+      </Title>
+      <FavButton onClick={() => setFavorite(!isFavorite)}>
+        Add to Favorites
+      </FavButton>
       <Subtitle>{recipe.description}</Subtitle>
 
       <Author>

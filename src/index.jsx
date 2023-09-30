@@ -8,6 +8,7 @@ import Footer from './components/Footer'
 import RecipesList from './pages/RecipesList'
 import Error from './components/Error'
 import GlobalStyle from './utils/style/GlobalStyle'
+import Favorites from './pages/Favorites'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
@@ -19,8 +20,8 @@ root.render(
         <Route path="/" element={<Home />} />
         <Route path="/recipe/:id" element={<Recipe />} />
         <Route path="/recipes_list" element={<RecipesList />} />
+        <Route path="/favorites" element={<Favorites />} />
         <Route path="*" element={<Error />} />
-
       </Routes>
       <Footer />
     </Router>
