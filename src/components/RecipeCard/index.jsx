@@ -4,7 +4,9 @@ import styled from 'styled-components'
 const CardWrapper = styled.div`
   background-color: ${colors.backgroundLight};
   padding: 20px;
-  border-radius: 10%;
+  border-radius: 20px;
+  box-shadow: 2px 2px ${colors.secondary}, -2px -2px white;
+  margin: 10px;
 `
 const Title = styled.h1`
   color: ${colors.secondary};

@@ -5,13 +5,14 @@ import { recipes } from '../../assets/recipes'
 import RecipeCard from '../../components/RecipeCard'
 
 const ListWrapper = styled.div`
-  background-color: ${colors.backgroundDark};
-  display: grid;
-  gap: 10px;
-  grid-template-rows: 350px 350px;
-  grid-template-columns: repeat(2, 1fr);
-  align-items: center;
-  justify-items: center;
+  background-color: ${colors.backgroundLight};
+  column-count: 1;
+  @media (min-width: 600px) {
+    column-count: 2;
+  }
+  @media (min-width: 900px) {
+    column-count: 3;
+  }
   padding: 10px;
 `
 

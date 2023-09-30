@@ -44,7 +44,8 @@ class Ingredients extends Component {
           {ingredients.map((ingredient) => (
             <IngredientText key={ingredient.name}>
               {getEmoji()}
-              {ingredient.name} {ingredient.quantity * servingsProportion}{' '}
+              {ingredient.name}{' '}
+              {Math.round(ingredient.quantity * servingsProportion)}{' '}
               {ingredient.metric}
             </IngredientText>
           ))}
