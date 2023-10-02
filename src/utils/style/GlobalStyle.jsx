@@ -9,11 +9,16 @@ const StyledGlobalStyle = createGlobalStyle`
     a {
       text-decoration: none;
     }
-
-    body {
-        margin: 0;
-        font-size: 100%
-    }
+   
+   body {
+      margin: 0px;
+      min-height: 100vh;
+      width: 100%;
+      font-size: 100%;
+   }
+   body > div > div {
+    min-height: 90vh;
+   }
 
 // H1 TITLE
     h1 {font-size: 3em;}

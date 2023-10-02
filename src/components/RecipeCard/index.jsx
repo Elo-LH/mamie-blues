@@ -2,10 +2,12 @@ import { useContext } from 'react'
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
 import { FavoritesContext } from '../../utils/context'
+import { Link } from 'react-router-dom'
 
 const CardWrapper = styled.div`
   background-color: ${colors.backgroundLight};
-  padding: 20px;
+  padding: 1rem;
+  height: fit-content;
   border-radius: 20px;
   box-shadow: 2px 2px ${colors.secondary}, -2px -2px white;
   margin: 10px;
@@ -33,16 +35,18 @@ function RecipeCard({ recipe }) {
 
   return (
     <CardWrapper>
-      <Title key={recipe.id}>
-        {star}
-        {recipe.name}
-      </Title>
-      <Subtitle>{recipe.description}</Subtitle>
-      <Author>
-        {' '}
-        Brought to you by Granny : {recipe.author.name} from{' '}
-        {recipe.author.country}
-      </Author>
+      <Link key={`recipe-${recipe.id}`} to={`/recipe/${recipe.id}`}>
+        <Title key={recipe.id}>
+          {star}
+          {recipe.name}
+        </Title>
+        <Subtitle>{recipe.description}</Subtitle>
+        <Author>
+          {' '}
+          Brought to you by Granny : {recipe.author.name} from{' '}
+          {recipe.author.country}
+        </Author>
+      </Link>
     </CardWrapper>
   )
 }
