@@ -24,7 +24,7 @@ function RecipesList() {
   return (
     <ListWrapper>
       {recipes.map((recipe) => (
-        <RecipeCard recipe={recipe} />
+        <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
     </ListWrapper>
   )

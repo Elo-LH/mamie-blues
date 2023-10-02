@@ -40,24 +40,32 @@ const ServingsText = styled.p`
   padding-left: 20px;
 `
 
+// Modify all ingredients proportions to one less serving
 export function substractServing(
   servings,
   servingsProportion,
   modifyServingsProportion
 ) {
-  const substractProportion = (servings - 1) / servings
-  const oneSubstract = 1 - substractProportion
-  modifyServingsProportion(servingsProportion - oneSubstract)
+  if (Math.round(servings * servingsProportion) > 1) {
+    const substractProportion = (servings - 1) / servings
+    const oneSubstract = 1 - substractProportion
+    modifyServingsProportion(servingsProportion - oneSubstract)
+  }
 }
 
+// Modify all ingredients proportions to one more serving
 export function addServing(
   servings,
   servingsProportion,
   modifyServingsProportion
 ) {
-  const addProportion = (servings + 1) / servings
-  const oneAdd = addProportion - 1
-  modifyServingsProportion(servingsProportion + oneAdd)
+  if (Math.round(servings * servingsProportion) < 30) {
+    const addProportion = (servings + 1) / servings
+    const oneAdd = addProportion - 1
+    modifyServingsProportion(servingsProportion + oneAdd)
+  } else {
+    alert('Sorry, you reached maximum servings')
+  }
 }
 
 class Servings extends Component {

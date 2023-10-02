@@ -27,7 +27,7 @@ function Favorites() {
   return (
     <ListWrapper>
       {favorites.map((favorite) => (
-        <RecipeCard recipe={favorite} />
+        <RecipeCard key={favorite.id} recipe={favorite} />
       ))}
     </ListWrapper>
   )

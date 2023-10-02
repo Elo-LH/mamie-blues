@@ -7,7 +7,10 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ### How does it look now ?
 
-- Home page & Recipe page
+- Home page
+- Recipes list with recipes cards
+- Favorite recipes list
+- Recipe details with overview and steps
 - Basic Header & Footer
 
 ### How will it be looking later ?
@@ -15,14 +18,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 - Home page with search bar
 - Search result page
 - News page with latest recipes added
-- Recipe display page with all infos and steps
 
 ## Currently working on : 🚧
 
 - Global design
-- Structuring pages and components
-- Implementing use of data via JSON file
-- Adding Props and hooks to manage data
+- Implementing use of images via JSON file
+- Adding API requests for fetching data
 
 ## Incoming fonctionnalities :
 
