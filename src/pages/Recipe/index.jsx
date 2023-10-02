@@ -109,6 +109,11 @@ function Recipe() {
   // Gestion des favoris
   const { favorites, updateFavorites } = useContext(FavoritesContext)
   console.log(favorites)
+  const isFavorite =
+    favorites.find((favorite) => favorite.id === recipe.id) === undefined
+      ? false
+      : true
+  console.log(isFavorite)
 
   // Displays Error if recipe is not found
   if (!recipe) {
@@ -118,13 +123,10 @@ function Recipe() {
   return (
     <RecipeWrapper>
       <Title>
-        {favorites.find((favorite) => favorite.id === recipe.id) ? '⭐' : ''}{' '}
-        {recipe.name}
+        {isFavorite ? '⭐' : ''} {recipe.name}
       </Title>
       <FavButton onClick={() => updateFavorites(recipe)}>
-        {favorites.find((favorite) => favorite.id === recipe.id)
-          ? 'Remove ⭐'
-          : 'Add ⭐'}
+        {isFavorite ? 'Remove ⭐' : 'Add ⭐'}
       </FavButton>
       <Subtitle>{recipe.description}</Subtitle>
 

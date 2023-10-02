@@ -289,8 +289,6 @@ class Clock extends Component {
       }
     }
 
-    console.log(clockFilling)
-
     return (
       <ClockWrapper>
         <ClockBorder>
