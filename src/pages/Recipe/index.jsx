@@ -117,7 +117,7 @@ function Recipe() {
 
   return (
     <RecipeWrapper>
-      <Title key={recipe.id}>
+      <Title>
         {favorites.find((favorite) => favorite.id === recipe.id) ? '⭐' : ''}{' '}
         {recipe.name}
       </Title>
@@ -147,7 +147,7 @@ function Recipe() {
         {/* Shows detailed timing */}
         <TimeGrid>
           {timing.map((time) => (
-            <Time time={time} />
+            <Time key={`time-${time.name}-${recipe.id}`} time={time} />
           ))}
         </TimeGrid>
 
@@ -166,7 +166,11 @@ function Recipe() {
 
       {/* Display each step */}
       {steps.map((step) => (
-        <Step step={step} servingsProportion={servingsProportion} />
+        <Step
+          key={`step-${step.number}-${recipe.id}`}
+          step={step}
+          servingsProportion={servingsProportion}
+        />
       ))}
     </RecipeWrapper>
   )
