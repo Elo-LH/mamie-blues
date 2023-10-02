@@ -1,5 +1,7 @@
+import { useContext } from 'react'
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
+import { FavoritesContext } from '../../utils/context'
 
 const CardWrapper = styled.div`
   background-color: ${colors.backgroundLight};
@@ -24,9 +26,17 @@ const Author = styled.p`
 `
 
 function RecipeCard({ recipe }) {
+  const { favorites } = useContext(FavoritesContext)
+  const star = favorites.find((favorite) => favorite.id === recipe.id)
+    ? '⭐ '
+    : ''
+
   return (
     <CardWrapper>
-      <Title key={recipe.id}>{recipe.name}</Title>
+      <Title key={recipe.id}>
+        {star}
+        {recipe.name}
+      </Title>
       <Subtitle>{recipe.description}</Subtitle>
       <Author>
         {' '}

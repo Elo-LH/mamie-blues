@@ -19,7 +19,8 @@ const ListWrapper = styled.div`
 `
 
 function Favorites() {
-  const { favorites, updateFavorites } = useContext(FavoritesContext)
+  const { favorites } = useContext(FavoritesContext)
+
   return (
     <ListWrapper>
       {favorites.map((favorite) => (

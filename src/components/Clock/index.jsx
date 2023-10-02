@@ -227,7 +227,7 @@ class Clock extends Component {
 
   render() {
     const { minutes } = this.props
-    console.log(minutes)
+    // console.log(minutes)
     // Determining background color and clock color depending on time
     var clockColor = 'green'
     var clockBackground = `${colors.backgroundLight}`
@@ -241,8 +241,8 @@ class Clock extends Component {
       clockColor = `purple`
       clockBackground = 'red'
     }
-    console.log(clockColor)
-    console.log(clockBackground)
+    // console.log(clockColor)
+    // console.log(clockBackground)
 
     // Determining minutes display on the clock
     var clockFilling = ''

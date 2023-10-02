@@ -10,7 +10,7 @@ import { useParams } from 'react-router-dom'
 import FrenchCrepes from '../../assets/French-crepes.png'
 
 import { recipes } from '../../assets/recipes'
-import { useState, useContext } from 'react'
+import { useState, useContext, useEffect } from 'react'
 
 import { FavoritesContext } from '../../utils/context'
 
@@ -107,11 +107,8 @@ function Recipe() {
   const [servingsProportion, modifyServingsProportion] = useState(1)
 
   // Gestion des favoris
-
   const { favorites, updateFavorites } = useContext(FavoritesContext)
-
-  const [isFavorite, setFavorite] = useState(false)
-  const star = isFavorite ? '⭐' : ''
+  console.log(favorites)
 
   // Displays Error if recipe is not found
   if (!recipe) {
@@ -121,10 +118,13 @@ function Recipe() {
   return (
     <RecipeWrapper>
       <Title key={recipe.id}>
-        {star} {recipe.name}
+        {favorites.find((favorite) => favorite.id === recipe.id) ? '⭐' : ''}{' '}
+        {recipe.name}
       </Title>
-      <FavButton onClick={() => setFavorite(!isFavorite)}>
-        {isFavorite ? 'Remove ⭐' : 'Add ⭐'}
+      <FavButton onClick={() => updateFavorites(recipe)}>
+        {favorites.find((favorite) => favorite.id === recipe.id)
+          ? 'Remove ⭐'
+          : 'Add ⭐'}
       </FavButton>
       <Subtitle>{recipe.description}</Subtitle>
 
