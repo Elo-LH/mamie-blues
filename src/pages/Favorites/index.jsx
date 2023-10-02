@@ -1,21 +1,24 @@
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import { Link } from 'react-router-dom'
-import { recipes } from '../../assets/recipes'
 import RecipeCard from '../../components/RecipeCard'
 import { FavoritesContext } from '../../utils/context'
 import { useContext } from 'react'
 
 const ListWrapper = styled.div`
   background-color: ${colors.backgroundLight};
-  column-count: 1;
+  margin: 0 auto;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
   @media (min-width: 600px) {
-    column-count: 2;
+    grid-template-columns: repeat(2, 1fr);
   }
   @media (min-width: 900px) {
-    column-count: 3;
+    grid-template-columns: repeat(3, 1fr);
   }
-  padding: 10px;
+  @media (min-width: 1200px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
 `
 
 function Favorites() {
@@ -24,9 +27,7 @@ function Favorites() {
   return (
     <ListWrapper>
       {favorites.map((favorite) => (
-        <Link key={`recipe-${favorite.id}`} to={`/recipe/${favorite.id}`}>
-          <RecipeCard recipe={favorite} />
-        </Link>
+        <RecipeCard recipe={favorite} />
       ))}
     </ListWrapper>
   )
