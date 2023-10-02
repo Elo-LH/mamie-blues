@@ -10,12 +10,32 @@ import { useParams } from 'react-router-dom'
 import FrenchCrepes from '../../assets/French-crepes.png'
 
 import { recipes } from '../../assets/recipes'
-import { useState } from 'react'
+import { useState, useContext, useEffect } from 'react'
+
+import { FavoritesContext } from '../../utils/context'
 
 const Title = styled.h1`
   color: ${colors.secondary};
   text-align: center;
   margin-top: 0px;
+  padding-top: 30px;
+`
+
+const FavButton = styled.p`
+  color: ${colors.dark};
+  background-color: ${colors.secondary};
+  padding: 5px;
+  border-radius: 20px;
+  float: inline-end;
+  @media (min-width: 600px) {
+    padding: 15px;
+    position: absolute;
+    top: 15px;
+    right: 10px;
+  }
+  &:hover {
+    cursor: pointer;
+  }
 `
 
 const Subtitle = styled.h2`
@@ -26,6 +46,7 @@ const Subtitle = styled.h2`
 const RecipeWrapper = styled.div`
   background-color: ${colors.backgroundLight};
   margin: 0px;
+  position: relative;
 `
 
 const OverviewWrapper = styled.div`
@@ -85,6 +106,15 @@ function Recipe() {
   const steps = recipe.steps
   const [servingsProportion, modifyServingsProportion] = useState(1)
 
+  // Gestion des favoris
+  const { favorites, updateFavorites } = useContext(FavoritesContext)
+  console.log(favorites)
+  const isFavorite =
+    favorites.find((favorite) => favorite.id === recipe.id) === undefined
+      ? false
+      : true
+  console.log(isFavorite)
+
   // Displays Error if recipe is not found
   if (!recipe) {
     return <Error />
@@ -92,7 +122,12 @@ function Recipe() {
 
   return (
     <RecipeWrapper>
-      <Title key={recipe.id}>{recipe.name}</Title>
+      <Title>
+        {isFavorite ? '⭐' : ''} {recipe.name}
+      </Title>
+      <FavButton onClick={() => updateFavorites(recipe)}>
+        {isFavorite ? 'Remove ⭐' : 'Add ⭐'}
+      </FavButton>
       <Subtitle>{recipe.description}</Subtitle>
 
       <Author>
@@ -114,7 +149,7 @@ function Recipe() {
         {/* Shows detailed timing */}
         <TimeGrid>
           {timing.map((time) => (
-            <Time time={time} />
+            <Time key={`time-${time.name}-${recipe.id}`} time={time} />
           ))}
         </TimeGrid>
 
@@ -133,7 +168,11 @@ function Recipe() {
 
       {/* Display each step */}
       {steps.map((step) => (
-        <Step step={step} servingsProportion={servingsProportion} />
+        <Step
+          key={`step-${step.number}-${recipe.id}`}
+          step={step}
+          servingsProportion={servingsProportion}
+        />
       ))}
     </RecipeWrapper>
   )

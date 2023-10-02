@@ -14,7 +14,7 @@ function Footer() {
   return (
     <NavContainer>
       <StyledLink to="/">Home</StyledLink>
-      <StyledLink to="/recipe">Recipe</StyledLink>
+      <StyledLink to="/recipes_list">Recipes List</StyledLink>
     </NavContainer>
   )
 }
