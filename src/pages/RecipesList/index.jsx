@@ -6,6 +6,7 @@ import RecipeCard from '../../components/RecipeCard'
 const ListWrapper = styled.div`
   background-color: ${colors.backgroundLight};
   margin: 0 auto;
+  padding: 0;
   display: grid;
   gap: 1rem;
   @media (min-width: 600px) {
@@ -23,7 +24,7 @@ function RecipesList() {
   return (
     <ListWrapper>
       {recipes.map((recipe) => (
-        <RecipeCard recipe={recipe} />
+        <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
     </ListWrapper>
   )
