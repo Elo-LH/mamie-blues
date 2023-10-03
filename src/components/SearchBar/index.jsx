@@ -1,8 +1,8 @@
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
-import { recipes } from '../../assets/recipes'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const SearchBarWrapper = styled.div`
   background-color: ${colors.secondary};
@@ -27,11 +27,20 @@ const SearchBarButton = styled(Link)`
 
 function SearchBar() {
   const [input, setInput] = useState('')
+  let navigate = useNavigate()
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      navigate(`/search/${input}`)
+    }
+  }
+
   return (
     <SearchBarWrapper>
       <SearchBarInput
         value={input}
         onInput={(e) => setInput(e.target.value)}
+        onKeyDown={handleKeyDown}
       ></SearchBarInput>
       <SearchBarButton to={`/search/${input}`}>Search recipe</SearchBarButton>
     </SearchBarWrapper>
