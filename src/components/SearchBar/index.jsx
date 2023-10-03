@@ -1,38 +1,41 @@
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
-import Ingredients from '../Ingredients'
+import { recipes } from '../../assets/recipes'
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
-const StepWrapper = styled.div`
-  background-color: ${colors.backgroundLight};
-  padding-bottom: 50px;
-  padding-left: 20px;
-  padding-right: 20px;
+const SearchBarWrapper = styled.div`
+  background-color: ${colors.secondary};
+  width: 100%;
+  padding: 10px;
 `
 
-const StepTitle = styled.h3`
+const SearchBarInput = styled.input`
   color: ${colors.primary};
+  background-color: ${colors.backgroundLight};
+  margin-left: 15px;
+  padding: 5px 10px 5px 10px;
+  border-radius: 50px;
 `
-const StepText = styled.p`
-  color: ${colors.dark};
-  text-align: justify;
+const SearchBarButton = styled(Link)`
+  color: ${colors.primary};
+  background-color: ${colors.backgroundLight};
+  border-radius: 50px;
+  margin-left: 10px;
+  padding: 5px 10px 5px 10px;
 `
 
-function Step({ step, servingsProportion }) {
+function SearchBar() {
+  const [input, setInput] = useState('')
   return (
-    <StepWrapper>
-      <StepTitle key={step.number}>
-        {step.number} - {step.name}{' '}
-      </StepTitle>
-      {step.ingredients.length > 0 ? (
-        // Create list of ingredients for this specific step, only if there is some
-        <Ingredients
-          ingredients={step.ingredients}
-          servingsProportion={servingsProportion}
-        />
-      ) : null}
-      <StepText key={step.description}>{step.description}</StepText>
-    </StepWrapper>
+    <SearchBarWrapper>
+      <SearchBarInput
+        value={input}
+        onInput={(e) => setInput(e.target.value)}
+      ></SearchBarInput>
+      <SearchBarButton to={`/search/${input}`}>Search recipe</SearchBarButton>
+    </SearchBarWrapper>
   )
 }
 
-export default Step
+export default SearchBar

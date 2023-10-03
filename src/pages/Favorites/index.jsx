@@ -19,6 +19,7 @@ const ListWrapper = styled.div`
   @media (min-width: 1200px) {
     grid-template-columns: repeat(4, 1fr);
   }
+  min-height: 90vh;
 `
 
 function Favorites() {

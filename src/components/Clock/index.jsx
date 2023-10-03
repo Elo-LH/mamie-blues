@@ -1,4 +1,3 @@
-import { Component } from 'react'
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
 

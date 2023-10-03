@@ -89,7 +89,10 @@ const RecipePicture = styled.img`
 
 // Find recipe by id in the recipes list data
 export function findRecipe(id) {
-  return recipes.find((recipe) => recipe.id === id)
+  // console.log(recipes.filter((recipe) => recipe.id === id))
+  // console.log(recipes.find((recipe) => recipe.id === id))
+  const result = recipes.filter((recipe) => recipe.id === id)
+  return result[0]
 }
 
 function Recipe() {

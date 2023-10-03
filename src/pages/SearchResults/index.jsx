@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import colors from '../../utils/style/colors'
 import { recipes } from '../../assets/recipes'
 import RecipeCard from '../../components/RecipeCard'
+import { useParams } from 'react-router-dom'
 
 const ListWrapper = styled.div`
   background-color: ${colors.backgroundLight};
@@ -22,14 +23,27 @@ const ListWrapper = styled.div`
   min-height: 90vh;
 `
 
-function RecipesList() {
+// Search for recipe name with search entry
+export function findResults(searchEntry) {
+  return recipes.filter((recipe) =>
+    recipe.name.toLowerCase().includes(searchEntry.toLowerCase())
+  )
+}
+
+function SearchResults() {
+  // Retrieving id from the url param
+  const { searchEntry } = useParams()
+  console.log(searchEntry)
+
+  let recipesFound = findResults(searchEntry)
+  console.log(recipesFound)
   return (
     <ListWrapper>
-      {recipes.map((recipe) => (
+      {recipesFound.map((recipe) => (
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
     </ListWrapper>
   )
 }
 
-export default RecipesList
+export default SearchResults
