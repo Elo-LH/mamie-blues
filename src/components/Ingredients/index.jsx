@@ -1,4 +1,3 @@
-import { Component } from 'react'
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
 
@@ -28,31 +27,22 @@ export const getEmoji = () => {
   return emojis[~~(Math.random() * emojis.length)]
 }
 
-class Ingredients extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
-  render() {
-    const { ingredients, servingsProportion } = this.props
-
-    return (
-      <IngredientsWrapper>
-        {/* For every ingredient, shows name, quantity and metric if there is */}
-        <IngredientsList>
-          {ingredients.map((ingredient) => (
-            <IngredientText key={ingredient.name}>
-              {getEmoji()}
-              {ingredient.name}{' '}
-              {Math.round(ingredient.quantity * servingsProportion)}{' '}
-              {ingredient.metric}
-            </IngredientText>
-          ))}
-        </IngredientsList>
-      </IngredientsWrapper>
-    )
-  }
+function Ingredients({ ingredients, servingsProportion }) {
+  return (
+    <IngredientsWrapper>
+      {/* For every ingredient, shows name, quantity and metric if there is */}
+      <IngredientsList>
+        {ingredients.map((ingredient) => (
+          <IngredientText key={ingredient.name}>
+            {getEmoji()}
+            {ingredient.name}{' '}
+            {Math.round(ingredient.quantity * servingsProportion)}{' '}
+            {ingredient.metric}
+          </IngredientText>
+        ))}
+      </IngredientsList>
+    </IngredientsWrapper>
+  )
 }
 
 export default Ingredients
