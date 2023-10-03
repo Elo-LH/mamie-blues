@@ -39,11 +39,9 @@ export function findResults(searchEntry) {
 function SearchResults() {
   // Retrieving id from the url param
   const { searchEntry } = useParams()
-  console.log(searchEntry)
   let error = `Nous n'avons pas trouvé de résultat correspondant à votre recherche : ${searchEntry}`
 
   let recipesFound = findResults(searchEntry)
-  console.log(recipesFound)
   return (
     <ResultsWrapper>
       {recipesFound.length === 0 ? (

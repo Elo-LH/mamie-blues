@@ -8,12 +8,11 @@ const NavContainer = styled.nav`
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  background-color: ${colors.backgroundLight};
-  border-bottom: 2px solid ${colors.secondary};
+  background-color: ${colors.backgroundDark};
 `
 
 const SiteName = styled.h2`
-  color: ${colors.primary};
+  color: ${colors.secondary};
 `
 
 function Header() {

@@ -3,7 +3,7 @@ import colors from '../../utils/style/colors'
 
 const ErrorWrapper = styled.div`
   background-color: ${colors.backgroundLight};
-  padding: 100px;
+  padding: 100px 10px 100px 10px;
 `
 
 const ErrorTitle = styled.h1`
@@ -15,6 +15,7 @@ const ErrorTitle = styled.h1`
 const ErrorText = styled.p`
   color: ${colors.dark};
   text-align: center;
+  max-width: 1200px;
 `
 
 function Error({ error }) {

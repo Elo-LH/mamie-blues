@@ -45,7 +45,6 @@ const Subtitle = styled.h2`
 
 const RecipeWrapper = styled.div`
   background-color: ${colors.backgroundLight};
-  margin: 0px;
   position: relative;
 `
 

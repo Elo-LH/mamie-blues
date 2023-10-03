@@ -3,31 +3,75 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { recipes } from '../../assets/recipes'
 
 const SearchBarWrapper = styled.div`
   background-color: ${colors.secondary};
-  width: 100%;
-  padding: 10px;
+  padding: 15px;
+  display: flex;
+`
+
+const SearchInputWrapper = styled.div`
+  background-color: ${colors.secondary};
+  position: relative;
 `
 
 const SearchBarInput = styled.input`
   color: ${colors.primary};
   background-color: ${colors.backgroundLight};
-  margin-left: 15px;
+
   padding: 5px 10px 5px 10px;
   border-radius: 50px;
+  @media screen and (max-width: 50em) {
+    padding: 2px 5px 2px 5px;
+    margin-left: 0;
+  }
 `
 const SearchBarButton = styled(Link)`
   color: ${colors.primary};
   background-color: ${colors.backgroundLight};
   border-radius: 50px;
-  margin-left: 10px;
-  padding: 5px 10px 5px 10px;
+  padding: 10px 15px 10px 15px;
 `
+
+const SuggestionsWrapper = styled.div`
+  background-color: ${colors.secondary};
+  position: absolute;
+  top: 40px;
+  width: 100%;
+  border: 1px solid black;
+`
+const SearchSuggestion = styled(Link)`
+  background-color: ${colors.backgroundLight};
+  color: ${colors.primary};
+  padding: 10px;
+  display: flex;
+`
+
+// Search for recipe name with search entry
+export function findSuggestions(searchEntry) {
+  let result = recipes.filter((recipe) =>
+    recipe.name.toLowerCase().includes(searchEntry.toLowerCase())
+  )
+  if (result.length > 5) {
+    result = result.slice(0, 5)
+  }
+  return result
+}
 
 function SearchBar() {
   const [input, setInput] = useState('')
   let navigate = useNavigate()
+  const [suggestions, updateSuggestions] = useState([])
+
+  const handleChange = (event) => {
+    if (event.key === 'Enter') {
+      navigate(`/search/${input}`)
+    } else if (input.length > 0) {
+      updateSuggestions(findSuggestions(input))
+      console.log(suggestions)
+    }
+  }
 
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
@@ -37,12 +81,26 @@ function SearchBar() {
 
   return (
     <SearchBarWrapper>
-      <SearchBarInput
-        value={input}
-        onInput={(e) => setInput(e.target.value)}
-        onKeyDown={handleKeyDown}
-      ></SearchBarInput>
-      <SearchBarButton to={`/search/${input}`}>Search recipe</SearchBarButton>
+      <SearchInputWrapper>
+        <SearchBarInput
+          placeholder="Search recipe..."
+          value={input}
+          onInput={(e) => setInput(e.target.value)}
+          onKeyDown={handleKeyDown}
+          onChange={handleChange}
+        ></SearchBarInput>
+        <SuggestionsWrapper>
+          {suggestions.map((suggestion) => (
+            <SearchSuggestion
+              to={`/recipe/${suggestion.id}`}
+              key={`suggestion-${suggestion.id}`}
+            >
+              {suggestion.name}
+            </SearchSuggestion>
+          ))}
+        </SuggestionsWrapper>
+      </SearchInputWrapper>
+      <SearchBarButton to={`/search/${input}`}>🔍</SearchBarButton>
     </SearchBarWrapper>
   )
 }
