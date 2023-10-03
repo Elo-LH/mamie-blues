@@ -28,7 +28,10 @@ root.render(
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/search/:searchEntry" element={<SearchResults />} />
 
-          <Route path="*" element={<Error />} />
+          <Route
+            path="*"
+            element={<Error error={`Cette page n'existe pas !`} />}
+          />
         </Routes>
         <Footer />
       </FavoritesProvider>
