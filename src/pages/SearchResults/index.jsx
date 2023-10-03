@@ -3,6 +3,7 @@ import colors from '../../utils/style/colors'
 import { recipes } from '../../assets/recipes'
 import RecipeCard from '../../components/RecipeCard'
 import { useParams } from 'react-router-dom'
+import Error from '../../components/Error'
 
 const ListWrapper = styled.div`
   background-color: ${colors.backgroundLight};
@@ -22,6 +23,11 @@ const ListWrapper = styled.div`
 
   min-height: 90vh;
 `
+const ResultsWrapper = styled.div`
+  background-color: ${colors.backgroundLight};
+  margin: 0
+  padding: 0;
+`
 
 // Search for recipe name with search entry
 export function findResults(searchEntry) {
@@ -34,15 +40,22 @@ function SearchResults() {
   // Retrieving id from the url param
   const { searchEntry } = useParams()
   console.log(searchEntry)
+  let error = `Nous n'avons pas trouvé de résultat correspondant à votre recherche : ${searchEntry}`
 
   let recipesFound = findResults(searchEntry)
   console.log(recipesFound)
   return (
-    <ListWrapper>
-      {recipesFound.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
-      ))}
-    </ListWrapper>
+    <ResultsWrapper>
+      {recipesFound.length === 0 ? (
+        <Error error={error} />
+      ) : (
+        <ListWrapper>
+          {recipesFound.map((recipe) => (
+            <RecipeCard key={recipe.id} recipe={recipe} />
+          ))}
+        </ListWrapper>
+      )}
+    </ResultsWrapper>
   )
 }
 

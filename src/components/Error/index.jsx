@@ -17,12 +17,12 @@ const ErrorText = styled.p`
   text-align: center;
 `
 
-function Error() {
+function Error({ error }) {
   return (
     <ErrorWrapper>
-      <ErrorTitle>La page demandée n'existe pas</ErrorTitle>
+      <ErrorTitle>Il y a un petit problème... 🤔</ErrorTitle>
       {/* <Illustration src={ErrorIllustration} /> */}
-      <ErrorText>Il y a dû avoir une erreur...</ErrorText>
+      <ErrorText>{error}</ErrorText>
     </ErrorWrapper>
   )
 }
