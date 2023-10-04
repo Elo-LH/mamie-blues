@@ -1,8 +1,8 @@
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { recipes } from '../../assets/recipes'
 
 const SearchBarWrapper = styled.div`
@@ -74,20 +74,26 @@ function SearchBar() {
   let navigate = useNavigate()
   const [suggestions, updateSuggestions] = useState([])
 
+  const location = useLocation()
+
+  useEffect(() => {
+    setInput('')
+    updateSuggestions([])
+  }, [location])
+
   // Actualize suggestions each time one letter is typed in search bar
   const handleChange = (event) => {
     console.log(event)
     console.log(input + event.nativeEvent.data)
     updateSuggestions(findSuggestions(input + event.nativeEvent.data))
-    console.log(suggestions)
   }
+
+  console.log(window.location.pathname)
 
   // Shows search results page when enter is pressed
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       navigate(`/search/${input}`)
-      setInput('')
-      updateSuggestions([])
       console.log(suggestions)
     }
   }
