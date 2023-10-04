@@ -3,7 +3,7 @@ import colors from '../../utils/style/colors'
 
 const ErrorWrapper = styled.div`
   background-color: ${colors.backgroundLight};
-  padding: 100px;
+  padding: 100px 10px 100px 10px;
 `
 
 const ErrorTitle = styled.h1`
@@ -15,14 +15,15 @@ const ErrorTitle = styled.h1`
 const ErrorText = styled.p`
   color: ${colors.dark};
   text-align: center;
+  max-width: 1200px;
 `
 
-function Error() {
+function Error({ error }) {
   return (
     <ErrorWrapper>
-      <ErrorTitle>La page demandée n'existe pas</ErrorTitle>
+      <ErrorTitle>Il y a un petit problème... 🤔</ErrorTitle>
       {/* <Illustration src={ErrorIllustration} /> */}
-      <ErrorText>Il y a dû avoir une erreur...</ErrorText>
+      <ErrorText>{error}</ErrorText>
     </ErrorWrapper>
   )
 }

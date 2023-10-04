@@ -1,4 +1,3 @@
-import { Component } from 'react'
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
 
@@ -219,90 +218,79 @@ export function toDaysHoursMin(number) {
     return result.slice(0, -3)
   }
 }
-class Clock extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
+function Clock({ minutes }) {
+  // Determining background color and clock color depending on time
+  var clockColor = 'green'
+  var clockBackground = `${colors.backgroundLight}`
+  if (minutes > 60 && minutes <= 120) {
+    clockColor = 'orange'
+    clockBackground = 'green'
+  } else if (minutes > 120 && minutes <= 180) {
+    clockColor = 'red'
+    clockBackground = 'orange'
+  } else if (minutes > 180) {
+    clockColor = `purple`
+    clockBackground = 'red'
   }
 
-  render() {
-    const { minutes } = this.props
-    // console.log(minutes)
-    // Determining background color and clock color depending on time
-    var clockColor = 'green'
-    var clockBackground = `${colors.backgroundLight}`
-    if (minutes > 60 && minutes <= 120) {
-      clockColor = 'orange'
-      clockBackground = 'green'
-    } else if (minutes > 120 && minutes <= 180) {
-      clockColor = 'red'
-      clockBackground = 'orange'
-    } else if (minutes > 180) {
-      clockColor = `purple`
-      clockBackground = 'red'
+  // Determining minutes display on the clock
+  var clockFilling = ''
+  if (minutes === 0) {
+    clockFilling = 'null'
+  } else {
+    const minutesDisplayed = (minutes + 60) % 60
+    switch (minutesDisplayed) {
+      case 5:
+        clockFilling = 'five'
+        break
+      case 10:
+        clockFilling = 'ten'
+        break
+      case 15:
+        clockFilling = 'fifteen'
+        break
+      case 20:
+        clockFilling = 'twenty'
+        break
+      case 25:
+        clockFilling = 'twenty-five'
+        break
+      case 30:
+        clockFilling = 'thirty'
+        break
+      case 35:
+        clockFilling = 'thirty-five'
+        break
+      case 40:
+        clockFilling = 'fourty'
+        break
+      case 45:
+        clockFilling = 'fourty-five'
+        break
+      case 50:
+        clockFilling = 'fifty'
+        break
+      case 55:
+        clockFilling = 'fifty-five'
+        break
+      default:
+        clockFilling = 'full'
     }
-    // console.log(clockColor)
-    // console.log(clockBackground)
-
-    // Determining minutes display on the clock
-    var clockFilling = ''
-    if (minutes === 0) {
-      clockFilling = 'null'
-    } else {
-      const minutesDisplayed = (minutes + 60) % 60
-      switch (minutesDisplayed) {
-        case 5:
-          clockFilling = 'five'
-          break
-        case 10:
-          clockFilling = 'ten'
-          break
-        case 15:
-          clockFilling = 'fifteen'
-          break
-        case 20:
-          clockFilling = 'twenty'
-          break
-        case 25:
-          clockFilling = 'twenty-five'
-          break
-        case 30:
-          clockFilling = 'thirty'
-          break
-        case 35:
-          clockFilling = 'thirty-five'
-          break
-        case 40:
-          clockFilling = 'fourty'
-          break
-        case 45:
-          clockFilling = 'fourty-five'
-          break
-        case 50:
-          clockFilling = 'fifty'
-          break
-        case 55:
-          clockFilling = 'fifty-five'
-          break
-        default:
-          clockFilling = 'full'
-      }
-    }
-
-    return (
-      <ClockWrapper>
-        <ClockBorder>
-          <ClockImage
-            clockColor={clockColor}
-            clockBackground={clockBackground}
-            className={clockFilling}
-            alt="clock image"
-          ></ClockImage>
-        </ClockBorder>
-        <ClockText>{toDaysHoursMin(minutes)}</ClockText>
-      </ClockWrapper>
-    )
   }
+
+  return (
+    <ClockWrapper>
+      <ClockBorder>
+        <ClockImage
+          clockColor={clockColor}
+          clockBackground={clockBackground}
+          className={clockFilling}
+          alt="clock image"
+        ></ClockImage>
+      </ClockBorder>
+      <ClockText>{toDaysHoursMin(minutes)}</ClockText>
+    </ClockWrapper>
+  )
 }
 
 export default Clock

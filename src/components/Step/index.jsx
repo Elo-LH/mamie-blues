@@ -1,7 +1,6 @@
 import colors from '../../utils/style/colors'
 import styled from 'styled-components'
 import Ingredients from '../Ingredients'
-import { Component } from 'react'
 
 const StepWrapper = styled.div`
   background-color: ${colors.backgroundLight};
@@ -18,31 +17,22 @@ const StepText = styled.p`
   text-align: justify;
 `
 
-class Step extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {}
-  }
-
-  render() {
-    const { step, servingsProportion } = this.props
-
-    return (
-      <StepWrapper>
-        <StepTitle key={step.number}>
-          {step.number} - {step.name}{' '}
-        </StepTitle>
-        {step.ingredients.length > 0 ? (
-          // Create list of ingredients for this specific step, only if there is some
-          <Ingredients
-            ingredients={step.ingredients}
-            servingsProportion={servingsProportion}
-          />
-        ) : null}
-        <StepText key={step.description}>{step.description}</StepText>
-      </StepWrapper>
-    )
-  }
+function Step({ step, servingsProportion }) {
+  return (
+    <StepWrapper>
+      <StepTitle key={step.number}>
+        {step.number} - {step.name}{' '}
+      </StepTitle>
+      {step.ingredients.length > 0 ? (
+        // Create list of ingredients for this specific step, only if there is some
+        <Ingredients
+          ingredients={step.ingredients}
+          servingsProportion={servingsProportion}
+        />
+      ) : null}
+      <StepText key={step.description}>{step.description}</StepText>
+    </StepWrapper>
+  )
 }
 
 export default Step

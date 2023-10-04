@@ -16,9 +16,6 @@ const StyledGlobalStyle = createGlobalStyle`
       width: 100%;
       font-size: 100%;
    }
-   body > div > div {
-    min-height: 90vh;
-   }
 
 // H1 TITLE
     h1 {font-size: 3em;}
@@ -59,15 +56,15 @@ const StyledGlobalStyle = createGlobalStyle`
       }
     }
 
-// TEXT (P, LI)
-    p, li {font-size: 1.5em;}
+// TEXT (P, LI, INPUT, BUTTON)
+    p, li, input, button {font-size: 1.5em;}
     @media screen and (max-width: 64em) {
-    p, li {
+    p, li, input, button {
         font-size: 1.5em;
       }
     }
     @media screen and (max-width: 50em) {
-    p, li {
+    p, li, input, button {
         font-size: 1em;
       }
     }
