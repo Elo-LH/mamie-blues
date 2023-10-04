@@ -12,7 +12,7 @@ const NavContainer = styled.nav`
 `
 
 const SiteName = styled.h2`
-  color: ${colors.secondary};
+  color: ${colors.primary};
 `
 
 function Header() {

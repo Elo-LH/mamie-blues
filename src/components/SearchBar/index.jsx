@@ -19,21 +19,28 @@ const SearchInputWrapper = styled.div`
 const SearchBarInput = styled.input`
   color: ${colors.primary};
   background-color: ${colors.backgroundLight};
-
+  border: none;
+  border-right: 2px solid ${colors.primary};
   padding: 5px 10px 5px 10px;
-  border-radius: 50px;
+  border-radius: 7% 0% 0% 7% / 50% 50% 50% 50%;
   @media screen and (max-width: 50em) {
     padding: 2px 5px 2px 5px;
     margin-left: 0;
   }
-  &.input {
-    border-radius: 100% 0% 0% 100% / 100% 0% 100% 0%;
+  ${(props) =>
+    props.suggestions.length > 0 &&
+    `border-radius: 7% 0% 0% 0% / 50% 50% 0% 0%  ;
+    border: 2px solid ${colors.primary};
+    `}
+  &:focus {
+    border: 2px solid ${colors.primary};
   }
 `
 const SearchBarButton = styled(Link)`
   color: ${colors.primary};
+  font-size: 90%;
   background-color: ${colors.backgroundLight};
-  border-radius: 50px;
+  border-radius: 0% 50% 50% 0% / 50% 50% 50% 50%;
   padding: 10px 15px 10px 15px;
 `
 
@@ -48,6 +55,7 @@ const SearchSuggestion = styled(Link)`
   color: ${colors.primary};
   padding: 10px;
   display: flex;
+  border: 2px solid ${colors.primary};
 `
 
 // Search for recipe name with search entry
@@ -90,6 +98,7 @@ function SearchBar() {
         <SearchBarInput
           placeholder="Search recipe..."
           value={input}
+          suggestions={suggestions}
           onInput={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
           onChange={handleChange}
