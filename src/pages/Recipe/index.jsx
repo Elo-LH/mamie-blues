@@ -29,9 +29,7 @@ const FavButton = styled.p`
   float: inline-end;
   @media (min-width: 600px) {
     padding: 15px;
-    position: absolute;
-    top: 15px;
-    right: 10px;
+    float: inline-end;
   }
   &:hover {
     cursor: pointer;
@@ -45,7 +43,6 @@ const Subtitle = styled.h2`
 
 const RecipeWrapper = styled.div`
   background-color: ${colors.backgroundLight};
-  position: relative;
 `
 
 const OverviewWrapper = styled.div`
