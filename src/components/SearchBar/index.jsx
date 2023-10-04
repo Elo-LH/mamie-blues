@@ -26,6 +26,9 @@ const SearchBarInput = styled.input`
     padding: 2px 5px 2px 5px;
     margin-left: 0;
   }
+  &.input {
+    border-radius: 100% 0% 0% 100% / 100% 0% 100% 0%;
+  }
 `
 const SearchBarButton = styled(Link)`
   color: ${colors.primary};
@@ -39,7 +42,6 @@ const SuggestionsWrapper = styled.div`
   position: absolute;
   top: 40px;
   width: 100%;
-  border: 1px solid black;
 `
 const SearchSuggestion = styled(Link)`
   background-color: ${colors.backgroundLight};
@@ -64,18 +66,21 @@ function SearchBar() {
   let navigate = useNavigate()
   const [suggestions, updateSuggestions] = useState([])
 
+  // Actualize suggestions each time one letter is typed in search bar
   const handleChange = (event) => {
-    if (event.key === 'Enter') {
-      navigate(`/search/${input}`)
-    } else if (input.length > 0) {
-      updateSuggestions(findSuggestions(input))
-      console.log(suggestions)
-    }
+    console.log(event)
+    console.log(input + event.nativeEvent.data)
+    updateSuggestions(findSuggestions(input + event.nativeEvent.data))
+    console.log(suggestions)
   }
 
+  // Shows search results page when enter is pressed
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       navigate(`/search/${input}`)
+      setInput('')
+      updateSuggestions([])
+      console.log(suggestions)
     }
   }
 
