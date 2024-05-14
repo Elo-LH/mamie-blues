@@ -1,7 +1,8 @@
 import styled from 'styled-components'
 import colors from '../../utils/style/colors'
-import { recipes } from '../../assets/recipes'
+import { useFetch } from '../../utils/hooks'
 import RecipeCard from '../../components/RecipeCard'
+import Error from '../../components/Error'
 
 const ListWrapper = styled.div`
   background-color: ${colors.backgroundLight};
@@ -23,11 +24,22 @@ const ListWrapper = styled.div`
 `
 
 function RecipesList() {
+  const { data, isLoading, error } = useFetch(
+    `http://localhost:3000/recipes_list`
+  )
+  const recipes = data?.recipes
+
+  if (error) {
+    return <Error error={error} />
+  }
+
   return (
     <ListWrapper>
-      {recipes.map((recipe) => (
-        <RecipeCard key={recipe.id} recipe={recipe} />
-      ))}
+      {isLoading ? (
+        <span>En chargement, veuillez patienter</span>
+      ) : (
+        recipes.map((recipe) => <RecipeCard key={recipe.id} recipe={recipe} />)
+      )}
     </ListWrapper>
   )
 }

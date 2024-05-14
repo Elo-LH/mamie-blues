@@ -16,12 +16,13 @@ const ErrorText = styled.p`
   color: ${colors.dark};
   text-align: center;
   max-width: 1200px;
+  justify-content: center;
 `
 
 function Error({ error }) {
   return (
     <ErrorWrapper>
-      <ErrorTitle>Il y a un petit problème... 🤔</ErrorTitle>
+      <ErrorTitle>An issue has occured... 🤔</ErrorTitle>
       {/* <Illustration src={ErrorIllustration} /> */}
       <ErrorText>{error}</ErrorText>
     </ErrorWrapper>
